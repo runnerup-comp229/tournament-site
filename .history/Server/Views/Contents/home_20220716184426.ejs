@@ -21,7 +21,7 @@
                     
                     <tr>
                         <th scope="row" class="text-center"> <%= count +1 %></th>
-                        <td><a href="/<%= tournament[count]._id %> "><%= tournament[count].Name %></a>  </td>
+                        <td><%= tournament[count].Name %> </td>
                         <td ><%= tournament[count].Owner %> </td>
                         <% if(tournament[count].isActive){ %>
                             <td>Yes</td>

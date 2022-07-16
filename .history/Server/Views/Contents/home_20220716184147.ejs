@@ -1,7 +1,7 @@
 <div class="container">
     <div class="jumbotron">
-        <h1 class="display-4">Welcome to RunnerUP tournament site!</h1> 
-         <h1 class="display-5">List of Tournaments</h1>
+        <h1 class="display-4">RunnerUP Landing Page</h1> 
+         <h1 class="display-5">Welcome to RunnerUP tournament site!</h1>
       </div>
       <div class="row">
         <div class="col">
@@ -20,14 +20,10 @@
                 <% for(let count = 0; count < tournament.length; count++) { %> 
                     
                     <tr>
-                        <th scope="row" class="text-center"> <%= count +1 %></th>
-                        <td><a href="/<%= tournament[count]._id %> "><%= tournament[count].Name %></a>  </td>
+                        <th scope="row" class="text-center"> <%= count %></th>
+                        <td><%= tournament[count].Name %> </td>
                         <td ><%= tournament[count].Owner %> </td>
-                        <% if(tournament[count].isActive){ %>
-                            <td>Yes</td>
-                          <% } else{ %>  
-                            <td>No</td>
-                         <% } %>  
+                        <td></td>   
                     </tr>
                 <% } %>     
             </tbody>

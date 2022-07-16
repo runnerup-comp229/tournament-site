@@ -12,12 +12,12 @@ router.get('/', DisplayHomePage);
 /* Display home page. */
 router.get('/home', DisplayHomePage);
 
-router.get('/:id', (req : express.Request, res : express.Response, next : express.NextFunction) =>
+router.get('/firstround', (req : express.Request, res : express.Response, next : express.NextFunction) =>
 {
     let id = req.params.id;
 
     // fetch contact by id
-    Tournament.findById(id, {}, {}, function(err, tournamentToView)
+    Tournament.findById("62d333f251938ffb6cbc3afb", {}, {}, function(err, tournamentToView)
     {
         if (err) 
         {

@@ -9,9 +9,9 @@ const tournament_1 = __importDefault(require("../Models/tournament"));
 const index_1 = require("../Controllers/index");
 router.get('/', index_1.DisplayHomePage);
 router.get('/home', index_1.DisplayHomePage);
-router.get('/firstround', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
     let id = req.params.id;
-    tournament_1.default.findById("62d0e534f8f41c97721beeb7", {}, {}, function (err, tournamentToView) {
+    tournament_1.default.findById(id, {}, {}, function (err, tournamentToView) {
         if (err) {
             console.error(err);
             res.end(err);
