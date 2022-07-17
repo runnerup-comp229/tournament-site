@@ -274,8 +274,8 @@ export function DisplayWinnersPage(req : express.Request, res : express.Response
       else {
       // show the books/details page with the data
       res.render('index', {
-        title: 'Winners',
-        page: 'winners',
+        title: 'Manage',
+        page: 'manage',
         tournament : tournamentToEdit
       })};
     });

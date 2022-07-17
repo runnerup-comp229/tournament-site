@@ -48,6 +48,6 @@ router.get('/manage/:id', DisplayManagePage);
 router.post('/manage/:id', ProcessManagePage);
 
 /* Display winners page */
-router.get('/:id/winners', DisplayWinnersPage);
+router.get('/winners/:id', DisplayWinnersPage);
 
 export default router;

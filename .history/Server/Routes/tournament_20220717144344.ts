@@ -4,7 +4,7 @@ const router = express.Router();
 import Tournament from '../Models/tournament';
 
 // import the controller module
-import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayFirstRoundPage, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage } from "../Controllers/tournament";
+import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayFirstRoundPage, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage } from "../Controllers/tournament";
 import { CallbackError } from 'mongoose';
 
 /* Display home page. */
@@ -47,7 +47,7 @@ router.get('/manage/:id', DisplayManagePage);
 /* Process manage page */
 router.post('/manage/:id', ProcessManagePage);
 
-/* Display winners page */
-router.get('/:id/winners', DisplayWinnersPage);
+/* Process manage page */
+router.get('/winners/:id', DisplayWinnersPage);
 
 export default router;

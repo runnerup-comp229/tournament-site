@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRoundPage = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
+exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRoundPage = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
 const tournament_1 = __importDefault(require("../Models/tournament"));
 function DisplayLandingPage(req, res, next) {
     tournament_1.default.find(function (err, tournaments) {
@@ -188,5 +188,23 @@ function ProcessManagePage(req, res, next) {
     });
 }
 exports.ProcessManagePage = ProcessManagePage;
+;
+function DisplayWinnersPage(req, res, next) {
+    let id = req.params.id;
+    tournament_1.default.findById(id, {}, {}, (err, tournamentToEdit) => {
+        if (err) {
+            return console.error(err);
+        }
+        else {
+            res.render('index', {
+                title: 'Winners',
+                page: 'winners',
+                tournament: tournamentToEdit
+            });
+        }
+        ;
+    });
+}
+exports.DisplayWinnersPage = DisplayWinnersPage;
 ;
 //# sourceMappingURL=tournament.js.map
