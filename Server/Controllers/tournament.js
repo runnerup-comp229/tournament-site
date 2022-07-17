@@ -164,27 +164,53 @@ function ProcessManagePage(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        let updateTournament = new tournament_1.default({ "_id": id,
-            "Name": tournament.Name,
-            "Owner": tournament.Owner,
-            "isActive": true,
-            "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8],
-            "SemiFinal": [req.body.sfteam1, req.body.sfteam2, req.body.sfteam3, req.body.sfteam4],
-            "Final": [req.body.fteam1, req.body.fteam2],
-            "RunnerUp": [req.body.ruteam1, req.body.ruteam2],
-            "First": req.body.first,
-            "Second": req.body.second,
-            "Third": req.body.third,
-            "Fourth": req.body.fourth
-        });
-        tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
-            if (err) {
-                console.error(err);
-                res.end(err);
-            }
-            ;
-            res.redirect('/home');
-        });
+        if (req.body.first == "") {
+            let updateTournament = new tournament_1.default({ "_id": id,
+                "Name": tournament.Name,
+                "Owner": tournament.Owner,
+                "isActive": true,
+                "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8],
+                "SemiFinal": [req.body.sfteam1, req.body.sfteam2, req.body.sfteam3, req.body.sfteam4],
+                "Final": [req.body.fteam1, req.body.fteam2],
+                "RunnerUp": [req.body.ruteam1, req.body.ruteam2],
+                "First": req.body.first,
+                "Second": req.body.second,
+                "Third": req.body.third,
+                "Fourth": req.body.fourth
+            });
+            tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.end(err);
+                }
+                ;
+                res.redirect('/home');
+            });
+        }
+        else {
+            let updateTournament = new tournament_1.default({ "_id": id,
+                "Name": tournament.Name,
+                "Owner": tournament.Owner,
+                "isActive": false,
+                "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8],
+                "SemiFinal": [req.body.sfteam1, req.body.sfteam2, req.body.sfteam3, req.body.sfteam4],
+                "Final": [req.body.fteam1, req.body.fteam2],
+                "RunnerUp": [req.body.ruteam1, req.body.ruteam2],
+                "First": req.body.first,
+                "Second": req.body.second,
+                "Third": req.body.third,
+                "Fourth": req.body.fourth
+            });
+            tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.end(err);
+                }
+                ;
+                res.redirect('/home');
+            });
+        }
+        ;
     });
 }
 exports.ProcessManagePage = ProcessManagePage;

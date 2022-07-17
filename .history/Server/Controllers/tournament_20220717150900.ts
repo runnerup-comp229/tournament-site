@@ -230,7 +230,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
            return console.error(err);
          } 
 
-         if (req.body.first == ""){
+         if (req.body.first != ""){
             let updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
@@ -245,19 +245,6 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
                 "Third": req.body.third,
                 "Fourth": req.body.fourth
             });
-
-                 // insert the new contact object into the database (contacts collection)
-    Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
-    {
-        if (err)
-        {
-            console.error(err);
-            res.end(err);
-        };
-
-        // edit successful -> redirect back to contact-list page
-        res.redirect('/home');
-    });
 
          } else {
             let updateTournament = new Tournament
@@ -275,7 +262,10 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
                 "Fourth": req.body.fourth
             });
 
-                 // insert the new contact object into the database (contacts collection)
+         };
+
+         
+            // insert the new contact object into the database (contacts collection)
     Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
     {
         if (err)
@@ -287,11 +277,6 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
         // edit successful -> redirect back to contact-list page
         res.redirect('/home');
     });
-
-         };
-
-         
-       
       }); 
 };
 

@@ -230,7 +230,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
            return console.error(err);
          } 
 
-         if (req.body.first == ""){
+         if (req.body.first = ""){
             let updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
