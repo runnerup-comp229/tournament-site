@@ -1,5 +1,5 @@
 <div class="container">
-    <h1><%=tournament.Name%> Semi-Final</h1>
+    <h1><%=tournament.Name%> First-Round</h1>
     <div class="row">
         <div class="col">
            <table class="table table-striped table-bordered table-hover">
@@ -14,22 +14,22 @@
             <tbody id="contactList">
                 <!-- Repeatable Rows -->
                 <% let index = 1; %>
-                <% for(let count = 0; count < 4; count += 2) { %> 
+                <% for(let count = 0; count < 8; count += 2) { %> 
                     
                     <tr>
                         <th scope="row" class="text-center"> <%= index %> <%index += 1; %></th>
-                        <td><%= tournament.SemiFinal[count]%> </td>
+                        <td><%= tournament.Participants[count]%> </td>
                         <td class="text-center">vs</td>
-                        <td><%= tournament.SemiFinal[count + 1]%> </td>
+                        <td><%= tournament.Participants[count + 1]%> </td>
                     </tr>
                 <% } %>     
             </tbody>
            </table>
-           <a href="/<%= tournament._id %>" id="addButton" class="btn btn-primary mb-1">First-round</a>
-           <button type="button" class="btn btn-primary mb-1" disabled>Semi-Final</button>
+           <a href="/<%= tournament._id %>" id="addButton" class="btn btn-primary mb-1" disabled>First-round</a>
+            <a href="/<%= tournament._id %>/semifinal" id="addButton" class="btn btn-primary mb-1">Semi-Final</a>
             <a href="/<%= tournament._id %>/runnerup" id="addButton" class="btn btn-primary mb-1">Runner up</a>
             <a href="/<%= tournament._id %>/final" id="addButton" class="btn btn-primary mb-1">Final</a>
-            <a href="/<%= tournament._id %>/winners" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-trophy"></i> Winners</a>
+           <a href="/<%= tournament._id %>/winners" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-trophy"></i> Winners</a>
         </div>
     </div>
 </div>
