@@ -13,12 +13,6 @@ router.get('/', DisplayHomePage);
 /* Display home page. */
 router.get('/home', DisplayHomePage);
 
-/* Display home page. */
-router.get('/add', (req : express.Request, res : express.Response, next : express.NextFunction) =>
-{
-    res.render('index', {title: 'Add', page: 'edit', tournament: ''});
-});
-
 /* Display First Round */
 router.get('/:id', (req : express.Request, res : express.Response, next : express.NextFunction) =>
 {
@@ -38,7 +32,6 @@ router.get('/:id', (req : express.Request, res : express.Response, next : expres
     });
 })
 
-// display edit page
 router.get('/edit/:id', (req, res, next) => {
     // declaring and initializing id variable with id property of req object
     let id = req.params.id;

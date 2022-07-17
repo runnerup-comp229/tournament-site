@@ -14,10 +14,7 @@ router.get('/', DisplayHomePage);
 router.get('/home', DisplayHomePage);
 
 /* Display home page. */
-router.get('/add', (req : express.Request, res : express.Response, next : express.NextFunction) =>
-{
-    res.render('index', {title: 'Add', page: 'edit', tournament: ''});
-});
+router.get('/add', DisplayHomePage);
 
 /* Display First Round */
 router.get('/:id', (req : express.Request, res : express.Response, next : express.NextFunction) =>
