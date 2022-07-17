@@ -315,14 +315,14 @@ export function DisplayWinnersPage(req : express.Request, res : express.Response
     // declaring and initializing id variable with id property of req object
     let id = req.params.id;
 
-    // fetch tournament by id
+    // fetch book by id
     Tournament.findById(id, {}, {}, (err, tournamentToEdit ) => {
       if (err)
       {
         return console.error(err);
       } 
       else {
-      // show the winners page with the data
+      // show the books/details page with the data
       res.render('index', {
         title: 'Winners',
         page: 'winners',

@@ -111,7 +111,7 @@ function DisplaySemiFinalPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'First Round', page: 'semifinal', tournament: tournamentToView });
+        res.render('index', { title: 'Semi-Final', page: 'semifinal', tournament: tournamentToView });
     });
 }
 exports.DisplaySemiFinalPage = DisplaySemiFinalPage;
@@ -123,7 +123,7 @@ function DisplayRunnerUpPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'First Round', page: 'runnerup', tournament: tournamentToView });
+        res.render('index', { title: 'Runner-Up', page: 'runnerup', tournament: tournamentToView });
     });
 }
 exports.DisplayRunnerUpPage = DisplayRunnerUpPage;
@@ -135,7 +135,7 @@ function DisplayFinalPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'First Round', page: 'final', tournament: tournamentToView });
+        res.render('index', { title: 'Final', page: 'final', tournament: tournamentToView });
     });
 }
 exports.DisplayFinalPage = DisplayFinalPage;

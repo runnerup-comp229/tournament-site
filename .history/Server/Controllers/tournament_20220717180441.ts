@@ -214,14 +214,14 @@ export function DisplayManagePage(req : express.Request, res : express.Response,
     // declaring and initializing id variable with id property of req object
     let id = req.params.id;
 
-    // fetch tournament by id
+    // fetch book by id
     Tournament.findById(id, {}, {}, (err, tournamentToEdit ) => {
       if (err)
       {
         return console.error(err);
       } 
       else {
-      // show the manege page with the data
+      // show the books/details page with the data
       res.render('index', {
         title: 'Manage',
         page: 'manage',
@@ -231,22 +231,15 @@ export function DisplayManagePage(req : express.Request, res : express.Response,
 };
 
 /* Process manage page */
-export function ProcessManagePage(req : express.Request, res : express.Response, next : express.NextFunction) 
-{
-    // declaring and initializing id variable with id property of req object
+export function ProcessManagePage(req : express.Request, res : express.Response, next : express.NextFunction) {
     let id = req.params.id;
-
-    // fetch tournament by id
      Tournament.findById(id, {}, {}, (err, tournament ) => {
          if (err)
          {
            return console.error(err);
          } 
 
-         // check if the tournament is active
          if (req.body.first == ""){
-
-            // create new tournament object with the id to update
             let updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
@@ -262,7 +255,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
                 "Fourth": req.body.fourth
             });
 
-                 // insert the new tournament object into the database (runnerup collection)
+                 // insert the new contact object into the database (contacts collection)
     Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
     {
         if (err)
@@ -271,12 +264,11 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
             res.end(err);
         };
 
-        // edit successful -> redirect back to home page
+        // edit successful -> redirect back to contact-list page
         res.redirect('/home');
     });
-        // if the tournament is not active
+
          } else {
-            // create new tournament object to update
             let updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
@@ -292,7 +284,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
                 "Fourth": req.body.fourth
             });
 
-                 // insert the new tournament object into the database (runnerup collection)
+                 // insert the new contact object into the database (contacts collection)
     Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
     {
         if (err)
@@ -301,11 +293,14 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
             res.end(err);
         };
 
-        // edit successful -> redirect back to landing page
+        // edit successful -> redirect back to contact-list page
         res.redirect('/home');
     });
 
-         };         
+         };
+
+         
+       
       }); 
 };
 
@@ -315,14 +310,14 @@ export function DisplayWinnersPage(req : express.Request, res : express.Response
     // declaring and initializing id variable with id property of req object
     let id = req.params.id;
 
-    // fetch tournament by id
+    // fetch book by id
     Tournament.findById(id, {}, {}, (err, tournamentToEdit ) => {
       if (err)
       {
         return console.error(err);
       } 
       else {
-      // show the winners page with the data
+      // show the books/details page with the data
       res.render('index', {
         title: 'Winners',
         page: 'winners',
