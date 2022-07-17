@@ -38,7 +38,7 @@ const passport_local_1 = __importDefault(require("passport-local"));
 const connect_flash_1 = __importDefault(require("connect-flash"));
 const cors_1 = __importDefault(require("cors"));
 let localStrategy = passport_local_1.default.Strategy;
-const index_1 = __importDefault(require("../Routes/index"));
+const tournament_1 = __importDefault(require("../Routes/tournament"));
 const app = (0, express_1.default)();
 const DBConfig = __importStar(require("./db"));
 mongoose_1.default.connect(DBConfig.RemoteURI || DBConfig.LocalURI);
@@ -66,7 +66,7 @@ app.use((0, express_session_1.default)({
 app.use((0, connect_flash_1.default)());
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
-app.use('/', index_1.default);
+app.use('/', tournament_1.default);
 app.use(function (req, res, next) {
     next((0, http_errors_1.default)(404));
 });

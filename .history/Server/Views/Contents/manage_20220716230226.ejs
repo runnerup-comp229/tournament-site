@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="col-lg-6 col-md-10 col-sm-10"><% if(title == "Edit") { %> Edit <%= tournament.Name %> <% } else { %> Add Tournament <% } %> </h1>
+    <h1 class="col-lg-6 col-md-10 col-sm-10">Manage <%= tournament.Name %></h1>
     <hr>
     <div id="messageArea"></div>
 
@@ -19,8 +19,6 @@
             value="<%= tournament.Owner %>"
             aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
         </div>
-
-        <% if(tournament == "") { %>
             <div class="input-group mb-3">
                 <span class="input-group-text">Team 1: </span>
                 <input id="team1" name="team1" type="text" class="form-control" 
@@ -77,8 +75,6 @@
                 aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
               </div>
 
-              
-              <% } %>  
         
         <% if(title == "Edit") { %>
         <button id="editButton" type="submit" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
