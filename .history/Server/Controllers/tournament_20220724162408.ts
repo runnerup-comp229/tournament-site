@@ -72,21 +72,7 @@ export function DisplayFirstRoundPage(req : express.Request, res : express.Respo
         }
 
         // show the first round page with the data
-        if (tournamentToView.First != "" && tournamentToView.Second != "" && tournamentToView.Third != "" && tournamentToView.Fourth != "")
-        {
-            res.render('index', {title: 'Winners', page: "winners", tournament: tournamentToView});
-        } else if (tournamentToView.Final[0] != "" && tournamentToView.Final[1] != ""){
-            res.render('index', {title: 'Final', page: "final", tournament: tournamentToView});
-        }
-        else if (tournamentToView.RunnerUp[0] != "" && tournamentToView.RunnerUp[1] != ""){
-            res.render('index', {title: 'Runner-up', page: "runnerup", tournament: tournamentToView});
-        }
-        else if (tournamentToView.SemiFinal[0] != "" && tournamentToView.SemiFinal[1] != "" && tournamentToView.SemiFinal[2] != "" && tournamentToView.SemiFinal[3] != ""){
-            res.render('index', {title: 'Semi-final', page: "semifinal", tournament: tournamentToView});
-        } else {
-            res.render('index', {title: 'First Round', page: "tournament-firstround", tournament: tournamentToView});
-        }
-        
+        res.render('index', {title: 'First Round', page: 'tournament-firstround', tournament: tournamentToView});
     });
 }
 
@@ -272,7 +258,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
          } 
 
          // check if the tournament is active
-         if (req.body.first == "" || req.body.second  == "" || req.body.third  == "" || req.body.fourth == "" ){
+         if (req.body.first == ""){
 
             // create new tournament object with the id to update
             let updateTournament = new Tournament

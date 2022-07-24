@@ -25,7 +25,14 @@ function ProcessAddPage(req, res, next) {
         "Name": req.body.name,
         "Owner": req.body.owner,
         "isActive": true,
-        "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8]
+        "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8],
+        "SemiFinal": ["", "", "", ""],
+        "Final": ["", ""],
+        "RunnerUp": ["", ""],
+        "First": "",
+        "Second": "",
+        "Third": "",
+        "Fourth": ""
     });
     tournament_1.default.create(newTournament, function (err) {
         if (err) {
@@ -45,7 +52,21 @@ function DisplayFirstRoundPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'First Round', page: 'tournament-firstround', tournament: tournamentToView });
+        if (tournamentToView.First != "" && tournamentToView.Second != "" && tournamentToView.Third != "" && tournamentToView.Fourth != "") {
+            res.render('index', { title: 'Winners', page: "winners", tournament: tournamentToView });
+        }
+        else if (tournamentToView.Final[0] != "" && tournamentToView.Final[1] != "") {
+            res.render('index', { title: 'Final', page: "final", tournament: tournamentToView });
+        }
+        else if (tournamentToView.RunnerUp[0] != "" && tournamentToView.RunnerUp[1] != "") {
+            res.render('index', { title: 'Runner-up', page: "runnerup", tournament: tournamentToView });
+        }
+        else if (tournamentToView.SemiFinal[0] != "" && tournamentToView.SemiFinal[1] != "" && tournamentToView.SemiFinal[2] != "" && tournamentToView.SemiFinal[3] != "") {
+            res.render('index', { title: 'Semi-final', page: "semifinal", tournament: tournamentToView });
+        }
+        else {
+            res.render('index', { title: 'First Round', page: "tournament-firstround", tournament: tournamentToView });
+        }
     });
 }
 exports.DisplayFirstRoundPage = DisplayFirstRoundPage;
@@ -77,7 +98,14 @@ function ProcessEditPage(req, res, next) {
             "Name": req.body.name,
             "Owner": req.body.owner,
             "isActive": true,
-            "Participants": [tournament.Participants[0], tournament.Participants[1], tournament.Participants[2], tournament.Participants[3], tournament.Participants[4], tournament.Participants[5], tournament.Participants[6], tournament.Participants[7]]
+            "Participants": [tournament.Participants[0], tournament.Participants[1], tournament.Participants[2], tournament.Participants[3], tournament.Participants[4], tournament.Participants[5], tournament.Participants[6], tournament.Participants[7]],
+            "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
+            "Final": [tournament.Final[0], tournament.Final[1]],
+            "RunnerUp": [tournament.RunnerUp[0], tournament.RunnerUp[1]],
+            "First": tournament.First,
+            "Second": tournament.Second,
+            "Third": tournament.Third,
+            "Fourth": tournament.Fourth
         });
         tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
             if (err) {
@@ -164,7 +192,7 @@ function ProcessManagePage(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        if (req.body.first == "") {
+        if (req.body.first == "" || req.body.second == "" || req.body.third == "" || req.body.fourth == "") {
             let updateTournament = new tournament_1.default({ "_id": id,
                 "Name": tournament.Name,
                 "Owner": tournament.Owner,

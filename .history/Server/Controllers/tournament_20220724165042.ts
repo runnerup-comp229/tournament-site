@@ -272,7 +272,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
          } 
 
          // check if the tournament is active
-         if (req.body.first == "" || req.body.second  == "" || req.body.third  == "" || req.body.fourth == "" ){
+         if (req.body.first == "" && req.body.second  == "" && req.body.third  == "" && req.body.fourth == "" ){
 
             // create new tournament object with the id to update
             let updateTournament = new Tournament

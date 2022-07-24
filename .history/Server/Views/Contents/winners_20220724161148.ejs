@@ -1,12 +1,12 @@
 <div class="container">
-    
+    <div class="container">
+        <div class="container">
     <h1><%=tournament.Name%> Winners <i class="fa-solid fa-trophy"></i></h1>
     <% if (tournament.First == "" && tournament.Second == "" && tournament.Third == "" && tournament.Fourth == "") { %>
         <p class="h4">
             Teams have not been assigned yet.
           </p>
           <% } else { %>
-            
     <div class="row">
         <div class="col">
            <table class="table table-striped table-bordered table-hover " >
@@ -44,7 +44,8 @@
             <a href="/<%= tournament._id %>/runnerup" id="addButton" class="btn btn-primary mb-1">Runner up</a>
             <a href="/<%= tournament._id %>/final" id="addButton" class="btn btn-primary mb-1">Final</a>
             <button type="button" class="btn btn-primary mb-1" disabled><i class="fa-solid fa-trophy"></i> Winners</button>
-        
+        </div>
+    </div>
 </div>
 </div>
 </div>

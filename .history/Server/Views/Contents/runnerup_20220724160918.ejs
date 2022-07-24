@@ -1,6 +1,6 @@
 <div class="container">
     <h1><%=tournament.Name%> Runner-up</h1>
-    <% if (tournament.RunnerUp[0] == "" && tournament.RunnerUp[1] == "" ) { %>
+    <% if (tournament.SemiFinal[0] == "" && tournament.SemiFinal[1] == "" && tournament.SemiFinal[2] == "" && tournament.SemiFinal[3] == "") { %>
         <p class="h4">
             Teams have not been assigned yet.
           </p>
@@ -30,7 +30,6 @@
                 <% } %>     
             </tbody>
            </table>
-           <% } %>   
            <a href="/<%= tournament._id %>" id="addButton" class="btn btn-primary mb-1">First-round</a>
            <a href="/<%= tournament._id %>/semifinal" id="addButton" class="btn btn-primary mb-1">Semi-Final</a>
            <button type="button" class="btn btn-primary mb-1" disabled>Runner-up</button>
