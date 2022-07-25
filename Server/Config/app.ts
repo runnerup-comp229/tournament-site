@@ -8,6 +8,7 @@ import favicon from 'serve-favicon';
 //import db package
 import mongoose from 'mongoose';
 
+
 //import modules for authentication
 import session from 'express-session';
 import passport from 'passport';
@@ -20,9 +21,13 @@ import cors from 'cors';
 // define authentication objects
 let localStrategy = passportLocal.Strategy;
 
+//import user model
+import User from '../Models/user';
+
+
 //import the router data
 import tournamentRouter from '../Routes/tournament';
-
+import authRouter from '../Routes/auth';
 const app = express();
 
 // DB configuration
@@ -68,8 +73,14 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use(User.createStrategy())
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // use routes
 app.use('/', tournamentRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
