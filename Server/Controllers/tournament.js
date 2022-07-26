@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRoundPage = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
+exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
 const tournament_1 = __importDefault(require("../Models/tournament"));
 function DisplayLandingPage(req, res, next) {
     tournament_1.default.find(function (err, tournaments) {
@@ -45,7 +45,7 @@ function ProcessAddPage(req, res, next) {
 }
 exports.ProcessAddPage = ProcessAddPage;
 ;
-function DisplayFirstRoundPage(req, res, next) {
+function DisplayCurrentRound(req, res, next) {
     let id = req.params.id;
     tournament_1.default.findById(id, {}, {}, function (err, tournamentToView) {
         if (err) {
@@ -53,23 +53,34 @@ function DisplayFirstRoundPage(req, res, next) {
             res.end(err);
         }
         if (tournamentToView.First != "" && tournamentToView.Second != "" && tournamentToView.Third != "" && tournamentToView.Fourth != "") {
-            res.render('index', { title: 'Winners', page: "winners", tournament: tournamentToView });
+            res.redirect('/' + tournamentToView._id + '/winners');
         }
         else if (tournamentToView.Final[0] != "" && tournamentToView.Final[1] != "") {
-            res.render('index', { title: 'Final', page: "final", tournament: tournamentToView });
+            res.redirect('/' + tournamentToView._id + '/final');
         }
         else if (tournamentToView.RunnerUp[0] != "" && tournamentToView.RunnerUp[1] != "") {
-            res.render('index', { title: 'Runner-up', page: "runnerup", tournament: tournamentToView });
+            res.redirect('/' + tournamentToView._id + '/runnerup');
         }
         else if (tournamentToView.SemiFinal[0] != "" && tournamentToView.SemiFinal[1] != "" && tournamentToView.SemiFinal[2] != "" && tournamentToView.SemiFinal[3] != "") {
-            res.render('index', { title: 'Semi-final', page: "semifinal", tournament: tournamentToView });
+            res.redirect('/' + tournamentToView._id + '/semifinal');
         }
         else {
-            res.render('index', { title: 'First Round', page: "tournament-firstround", tournament: tournamentToView });
+            res.redirect('/' + tournamentToView._id + '/firstround');
         }
     });
 }
-exports.DisplayFirstRoundPage = DisplayFirstRoundPage;
+exports.DisplayCurrentRound = DisplayCurrentRound;
+function DisplayFirstRound(req, res, next) {
+    let id = req.params.id;
+    tournament_1.default.findById(id, {}, {}, function (err, tournamentToView) {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.render('index', { title: 'First-round', page: "tournament-firstround", tournament: tournamentToView });
+    });
+}
+exports.DisplayFirstRound = DisplayFirstRound;
 function DisplayEditPage(req, res, next) {
     let id = req.params.id;
     tournament_1.default.findById(id, {}, {}, (err, tournamentToEdit) => {

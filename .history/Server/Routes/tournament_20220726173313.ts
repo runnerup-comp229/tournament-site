@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 // import the controller module
-import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayCurrentRound, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage, DisplayFirstRound } from "../Controllers/tournament";
+import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayCurrentRound, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage } from "../Controllers/tournament";
 
 
 /* Display home page. */
@@ -19,9 +19,6 @@ router.post('/add', ProcessAddPage);
 
 /* Show current round page*/
 router.get('/view/:id', DisplayCurrentRound);
-
-/* Display First Round page*/
-router.get('/:id/firstround', DisplayFirstRound);
 
 /* Display Edit page */
 router.get('/edit/:id', DisplayEditPage);

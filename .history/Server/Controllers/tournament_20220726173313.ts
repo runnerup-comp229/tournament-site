@@ -74,40 +74,21 @@ export function DisplayCurrentRound(req : express.Request, res : express.Respons
         // show the first round page with the data
         if (tournamentToView.First != "" && tournamentToView.Second != "" && tournamentToView.Third != "" && tournamentToView.Fourth != "")
         {
-            res.redirect('/'+ tournamentToView._id +'/winners');
+            res.render('index', {title: 'Winners', page: "winners", tournament: tournamentToView});
         } else if (tournamentToView.Final[0] != "" && tournamentToView.Final[1] != ""){
-            res.redirect('/'+ tournamentToView._id +'/final');
+            res.render('index', {title: 'Final', page: "final", tournament: tournamentToView});
         }
         else if (tournamentToView.RunnerUp[0] != "" && tournamentToView.RunnerUp[1] != ""){
-            res.redirect('/'+ tournamentToView._id +'/runnerup');
+            res.render('index', {title: 'Runner-up', page: "runnerup", tournament: tournamentToView});
         }
         else if (tournamentToView.SemiFinal[0] != "" && tournamentToView.SemiFinal[1] != "" && tournamentToView.SemiFinal[2] != "" && tournamentToView.SemiFinal[3] != ""){
-            res.redirect('/'+ tournamentToView._id +'/semifinal');
+            res.render('index', {title: 'Semi-final', page: "semifinal", tournament: tournamentToView});
         } else {
-            res.redirect('/'+ tournamentToView._id +'/firstround');
+            res.render('index', {title: 'First Round', page: "tournament-firstround", tournament: tournamentToView});
         }
         
     });
 }
-
-export function DisplayFirstRound(req : express.Request, res : express.Response, next : express.NextFunction) 
-{
-    let id = req.params.id;
-
-    // fetch tournament by id
-    Tournament.findById(id, {}, {}, function(err, tournamentToView)
-    {
-        if (err) 
-        {
-            console.error(err);
-            res.end(err);
-        }
-
-        // show the first round page with the data
-        res.render('index', {title: 'First-round', page: "tournament-firstround", tournament: tournamentToView});
-    });
-}
-
 
 /* Display Edit page */
 export function DisplayEditPage(req : express.Request, res : express.Response, next : express.NextFunction) 
