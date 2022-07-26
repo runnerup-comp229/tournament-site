@@ -10,7 +10,7 @@ router.get('/', tournament_1.DisplayLandingPage);
 router.get('/home', tournament_1.DisplayLandingPage);
 router.get('/add', tournament_1.DisplayAddPage);
 router.post('/add', tournament_1.ProcessAddPage);
-router.get('/view/:id', tournament_1.DisplayFirstRoundPage);
+router.get('/:id/view', tournament_1.DisplayFirstRoundPage);
 router.get('/edit/:id', tournament_1.DisplayEditPage);
 router.post('/edit/:id', tournament_1.ProcessEditPage);
 router.get('/delete/:id', tournament_1.ProcessDeletePage);
