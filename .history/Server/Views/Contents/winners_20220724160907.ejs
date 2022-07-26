@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="container">
+        <div class="container">
+    <h1><%=tournament.Name%> Winners <i class="fa-solid fa-trophy"></i></h1>
+    <% if (tournament.SemiFinal[0] == "" && tournament.SemiFinal[1] == "" && tournament.SemiFinal[2] == "" && tournament.SemiFinal[3] == "") { %>
+        <p class="h4">
+            Teams have not been assigned yet.
+          </p>
+          <% } else { %>
+    <div class="row">
+        <div class="col">
+           <table class="table table-striped table-bordered table-hover " >
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" >#</th>
+                    <th >Team Name</th>
+                </tr>
+            </thead>
+            <tbody id="contactList">
+                    
+                    <tr>
+                        <th scope="row" > First</th>
+                        <td><%= tournament.First%> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" > Second</th>
+                        <td><%= tournament.Second%> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" > Third</th>
+                        <td><%= tournament.Third%> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" > Fourth</th>
+                        <td><%= tournament.Fourth%> </td>
+                    </tr>
+                  
+            </tbody>
+           </table>
+           
+           <a href="/<%= tournament._id %>" id="addButton" class="btn btn-primary mb-1">First-round</a>
+            <a href="/<%= tournament._id %>/semifinal" id="addButton" class="btn btn-primary mb-1">Semi-Final</a>
+            <a href="/<%= tournament._id %>/runnerup" id="addButton" class="btn btn-primary mb-1">Runner up</a>
+            <a href="/<%= tournament._id %>/final" id="addButton" class="btn btn-primary mb-1">Final</a>
+            <button type="button" class="btn btn-primary mb-1" disabled><i class="fa-solid fa-trophy"></i> Winners</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>
