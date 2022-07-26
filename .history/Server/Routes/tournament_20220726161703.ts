@@ -5,6 +5,7 @@ const router = express.Router();
 import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayFirstRoundPage, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage } from "../Controllers/tournament";
 
 
+
 /* Display home page. */
 router.get('/', DisplayLandingPage);
 

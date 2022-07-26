@@ -5,6 +5,15 @@ const router = express.Router();
 import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayFirstRoundPage, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage } from "../Controllers/tournament";
 
 
+/* Display login page. */
+router.get('/login', function(req : express.Request, res : express.Response, next : express.NextFunction) 
+{
+    if (!req.user)
+    {
+        return res.render('index', {title: 'Login', page: 'login'});
+    }
+    return res.redirect('/contact-list');
+});
 /* Display home page. */
 router.get('/', DisplayLandingPage);
 
@@ -18,7 +27,7 @@ router.get('/add', DisplayAddPage);
 router.post('/add', ProcessAddPage);
 
 /* Display First Round page*/
-router.get('/view/:id', DisplayFirstRoundPage);
+router.get('/:id', DisplayFirstRoundPage);
 
 /* Display Edit page */
 router.get('/edit/:id', DisplayEditPage);

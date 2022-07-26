@@ -1,13 +1,18 @@
+
 import express from 'express';
 const router = express.Router();
-
-import Tournament from '../Models/tournament';
 
 // import the controller module
 import { DisplayLoginPage,  DisplayRegisterPage,  ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage } from "../Controllers/auth";
 
 /* Display home page. */
-router.get('/login', DisplayLoginPage);
+router.get('/login', (req : express.Request, res : express.Response, next : express.NextFunction) => {
+    res.render('index', {
+        title: 'Winners',
+        page: 'winners',
+        tournament : ""
+      });
+});
 
 /* Display home page. */
 router.get('/register', DisplayRegisterPage);

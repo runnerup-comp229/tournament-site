@@ -3,6 +3,7 @@ import express, {NextFunction} from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import favicon from 'serve-favicon';
 
 //import db package
 import mongoose from 'mongoose';
@@ -27,7 +28,6 @@ import User from '../Models/user';
 //import the router data
 import tournamentRouter from '../Routes/tournament';
 import authRouter from '../Routes/auth';
-
 const app = express();
 
 // DB configuration

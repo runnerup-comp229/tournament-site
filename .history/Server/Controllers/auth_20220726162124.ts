@@ -6,12 +6,12 @@ import user from '../Models/user';
 
 export function DisplayLoginPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
-   res.render('index',{title:'Login',page:'login',messages: req.flash('loginMessage'), displayName: ''});
+   res.render('index',{title:'Login',page:'login',message: req.flash('loginMessage'),displayName: ''});
 }
 
 export function DisplayRegisterPage(req : express.Request, res : express.Response, next : express.NextFunction)
 {
-    res.render('index',{title:'Register',page:'register',messages: req.flash('registerMessage') ,displayName: ''});
+    res.render('index',{title:'Register',page:'register',message: req.flash('registerMessage'),displayName: ''});
 }
 
 

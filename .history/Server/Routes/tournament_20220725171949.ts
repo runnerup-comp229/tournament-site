@@ -5,6 +5,8 @@ const router = express.Router();
 import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayFirstRoundPage, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage } from "../Controllers/tournament";
 
 
+/* Display login page. */
+
 /* Display home page. */
 router.get('/', DisplayLandingPage);
 
@@ -18,7 +20,7 @@ router.get('/add', DisplayAddPage);
 router.post('/add', ProcessAddPage);
 
 /* Display First Round page*/
-router.get('/view/:id', DisplayFirstRoundPage);
+router.get('/:id', DisplayFirstRoundPage);
 
 /* Display Edit page */
 router.get('/edit/:id', DisplayEditPage);
