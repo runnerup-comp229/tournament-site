@@ -20,7 +20,7 @@ router.post('/add', ProcessAddPage);
 /* Show current round page*/
 router.get('/view/:id', DisplayCurrentRound);
 
-/* Display First Round page*/
+/* Show current round page*/
 router.get('/:id/firstround', DisplayFirstRound);
 
 /* Display Edit page */

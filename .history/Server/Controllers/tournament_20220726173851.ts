@@ -104,7 +104,7 @@ export function DisplayFirstRound(req : express.Request, res : express.Response,
         }
 
         // show the first round page with the data
-        res.render('index', {title: 'First-round', page: "tournament-firstround", tournament: tournamentToView});
+        res.render('index', {title: 'Winners', page: "winners", tournament: tournamentToView});
     });
 }
 
