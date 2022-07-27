@@ -11,12 +11,10 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link <%= (page == 'home') ? 'active' : ''; %> " aria-current="page" href="/home"><i class="fa-solid fa-house-chimney fa-lg"></i> Home</a>
+          <a class="nav-link <%= (page == 'home') ? 'active' : ''; %> " aria-current="page" href="/home"><i class="fa-solid fa-house-chimney fa-lg" ></i> Tournament</a>
         </li>
         <% if (displayName) { %>
-          <li class="nav-item">
-            <a class="nav-link <%= (page == 'tournament') ? 'active' : ''; %> " aria-current="page" href="/tournament"><i class="fa-solid fa-arrow-right-from-bracket"></i>Tournament</a>
-          </li>
+         
           <li class="nav-item">
             <a class="nav-link"  aria-current= "page"  href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
           </li>
