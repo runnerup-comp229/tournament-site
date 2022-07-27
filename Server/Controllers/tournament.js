@@ -5,13 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
 const tournament_1 = __importDefault(require("../Models/tournament"));
+const Util_1 = require("../Util");
 function DisplayLandingPage(req, res, next) {
     tournament_1.default.find(function (err, tournaments) {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Home', page: 'home', tournament: tournaments });
+        res.render('index', { title: 'Home', page: 'home', tournament: tournaments, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplayLandingPage = DisplayLandingPage;
