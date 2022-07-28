@@ -1,6 +1,5 @@
 
 /* Custom JavaScript goes here */
-import anime from "animejs";
 
 (function()
 {
@@ -26,17 +25,7 @@ import anime from "animejs";
                 location.href = "/edit/" + pathArray[pathArray.length - 1] ; 
             };
         });
-        //Animate winner top
-        $("a.teamT").on("click", function(event){
-            event.preventDefault();
-            console.log("trigger");
-            anime({
-                targets: "a.teamT",
-                translateX: 125,
-                duration: 1000,
-                easing: 'quadInOut'
-            })
-        })  
+
     };
 
     window.addEventListener("load", Start);

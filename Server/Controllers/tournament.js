@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
+exports.ProcessFirstRoundAdvance = exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
 const tournament_1 = __importDefault(require("../Models/tournament"));
 function DisplayLandingPage(req, res, next) {
     tournament_1.default.find(function (err, tournaments) {
@@ -271,5 +271,58 @@ function DisplayWinnersPage(req, res, next) {
     });
 }
 exports.DisplayWinnersPage = DisplayWinnersPage;
+;
+function ProcessFirstRoundAdvance(req, res, next) {
+    let id = req.params.id;
+    let boutnum = req.params.boutnum;
+    let winner = req.params.winner;
+    let updateTournament = new tournament_1.default();
+    tournament_1.default.findById(id, {}, {}, (err, tournament) => {
+        if (err) {
+            return console.error(err);
+        }
+        switch (boutnum) {
+            case '1':
+                updateTournament = new tournament_1.default({ "_id": id,
+                    "Name": tournament.Name,
+                    "Owner": tournament.Owner,
+                    "isActive": false,
+                    "Participants": tournament.Participants,
+                    "SemiFinal": [winner, tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
+                    "Final": tournament.Final,
+                    "RunnerUp": tournament.RunnerUp,
+                    "First": tournament.First,
+                    "Second": tournament.Second,
+                    "Third": tournament.Third,
+                    "Fourth": tournament.Fourth
+                });
+                break;
+            case '2':
+                updateTournament = new tournament_1.default({
+                    "SemiFinal": [tournament.SemiFinal[0], winner, tournament.SemiFinal[2], tournament.SemiFinal[3]],
+                });
+                break;
+            case '3':
+                updateTournament = new tournament_1.default({
+                    "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.winner, tournament.SemiFinal[3]],
+                });
+                break;
+            case '4':
+                updateTournament = new tournament_1.default({
+                    "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], winner],
+                });
+                break;
+        }
+        tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+            if (err) {
+                console.error(err);
+                res.end(err);
+            }
+            ;
+        });
+        res.redirect('/' + id + '/firstround');
+    });
+}
+exports.ProcessFirstRoundAdvance = ProcessFirstRoundAdvance;
 ;
 //# sourceMappingURL=tournament.js.map
