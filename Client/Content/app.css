@@ -51,3 +51,16 @@
     width: 100%;
 }
 
+.bout
+{
+    padding-top: 30px;
+}
+
+.team
+{
+    margin-top: 20px;
+    height:100px;
+    line-height:70%;
+    min-width: 120px;
+    max-width: 200px;
+}

@@ -31,5 +31,25 @@
             <a href="/<%= tournament._id %>/final" id="addButton" class="btn btn-primary mb-1">Final</a>
            <a href="/<%= tournament._id %>/winners" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-trophy"></i> Winners</a>
         </div>
+        <div class="bout">
+            <a href='#' class="btn btn-danger team teamT" role="button"> <h3>Team 1</h3> <br> <%= tournament.Participants[0] %></a>
+            <br>
+            <button type="button" class="btn btn-danger team teamB"> <h3>Team 2</h3> <br> <%= tournament.Participants[1] %></button>
+        </div>
+        <div class="bout">
+            <button type="button" class="btn btn-danger team teamT"> <h3>Team 3</h3> <br> <%= tournament.Participants[2] %></button>
+            <br>
+            <button type="button" class="btn btn-danger team teamB"> <h3>Team 4</h3> <br> <%= tournament.Participants[3] %></button>
+        </div>
+        <div class="bout">
+            <button type="button" class="btn btn-danger team teamT"> <h3>Team 5</h3> <br> <%= tournament.Participants[4] %></button>
+            <br>
+            <button type="button" class="btn btn-danger team teamB"> <h3>Team 6</h3> <br> <%= tournament.Participants[5] %></button>
+        </div>
+        <div class="bout">
+            <button type="button" class="btn btn-danger team teamT"> <h3>Team 7</h3> <br> <%= tournament.Participants[6] %></button>
+            <br>
+            <button type="button" class="btn btn-danger team teamB"> <h3>Team 8</h3> <br> <%= tournament.Participants[7] %></button>
+        </div>
     </div>
 </div>
