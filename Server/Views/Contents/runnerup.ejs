@@ -38,4 +38,10 @@
             <a href="/<%= tournament._id %>/winners" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-trophy"></i> Winners</a>
         </div>
     </div>
+    <div class="bout">
+        <a href='/<%= tournament._id %>/RunnerUp/<%= tournament.RunnerUp[0] %>/<%= tournament.RunnerUp[1] %>' class="btn btn-danger team teamT" role="button"> <h3>Team 1</h3> <br> <%= tournament.RunnerUp[0] %></a>
+        <br>
+        <a href="/<%= tournament._id %>/RunnerUp/<%= tournament.RunnerUp[1] %>/<%= tournament.RunnerUp[0] %>" class="btn btn-danger team teamB"> <h3>Team 2</h3> <br> <%= tournament.RunnerUp[1] %></a>
+        <br>
+        <a href="#" class="btn btn-warning team teamB"> <h3>Winner</h3> <br> <%= tournament.Third %></a>
 </div>
