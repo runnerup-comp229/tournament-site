@@ -12,20 +12,21 @@
                 Teams have not been assigned yet.
               </p>
               <% } else { %>
-    
+    <div class="boutContainer">
     <div class="bout bout1">
         <a href='/<%= tournament._id %>/semifinal/1/<%= tournament.SemiFinal[0] %>/<%= tournament.SemiFinal[1] %>' class="btn btn-danger team teamT" role="button"> <h3>Team 1</h3> <br> <%= tournament.SemiFinal[0] %></a>
         <br>
         <a href="/<%= tournament._id %>/semifinal/1/<%= tournament.SemiFinal[1] %>/<%= tournament.SemiFinal[0] %>" class="btn btn-danger team teamB"> <h3>Team 2</h3> <br> <%= tournament.SemiFinal[1] %></a>
         <br>
-        <a href="#" class="btn btn-warning team teamB"> <h3>Winner</h3> <br> <%= tournament.Final[0] %></a>
+        <a href="#" class="btn btn-warning team winner"> <h3>Winner</h3> <br> <%= tournament.Final[0] %></a>
     </div>
     <div class="bout bout2">
         <a href="/<%= tournament._id %>/semifinal/2/<%= tournament.SemiFinal[2] %>/<%= tournament.SemiFinal[3] %>" class="btn btn-danger team teamT"> <h3>Team 3</h3> <br> <%= tournament.SemiFinal[2] %></a>
         <br>
         <a href="/<%= tournament._id %>/semifinal/2/<%= tournament.SemiFinal[3] %>/<%= tournament.SemiFinal[2] %>" class="btn btn-danger team teamB"> <h3>Team 4</h3> <br> <%= tournament.SemiFinal[3] %></a>
         <br>
-        <a href="#" class="btn btn-warning team teamB"> <h3>Winner</h3> <br> <%= tournament.Final[1] %></a>
+        <a href="#" class="btn btn-warning team winner"> <h3>Winner</h3> <br> <%= tournament.Final[1] %></a>
+    </div>
     </div>
     <% } %>
 </div>

@@ -53,18 +53,49 @@
 
 .bout
 {
-    padding-top: 30px;
-    width:40%;
-    border-width: 10px;
-    border-style: dotted;
+    width:90%;
     min-width: 300px;
+    margin-bottom: 30px;
+    padding-bottom: 0;
 }
-
+.boutContainer{
+    display:grid;
+    grid-template-columns: 50%, 50%;
+}
+.bout2, .bout4{
+    grid-column: 2;
+}
 .team
 {
-    margin-top: 20px;
+    margin-top: 30px;
     height:100px;
     line-height:70%;
     min-width: 120px;
     max-width: 200px;
+}
+
+
+.bout2, .bout4{
+    justify-content: right;
+}
+.winner{
+    float: right;
+    position: relative;
+    bottom: 50%;
+}
+.single{
+    display:grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+.single .teamT{
+    grid-row: 1;
+    grid-column: 2;
+}
+.single .teamB{
+    grid-row: 1;
+    grid-column: 4;
+}
+.single .winner{
+    grid-column:3;
+    grid-row:2;
 }
