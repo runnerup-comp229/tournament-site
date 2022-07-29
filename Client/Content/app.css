@@ -54,6 +54,10 @@
 .bout
 {
     padding-top: 30px;
+    width:40%;
+    border-width: 10px;
+    border-style: dotted;
+    min-width: 300px;
 }
 
 .team
