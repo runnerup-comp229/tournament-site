@@ -16,7 +16,7 @@ router.get('/home', DisplayLandingPage);
 router.get('/mytournaments/:id',AuthGuard, DisplayMyTournamentPage);
 
 /* Display my tournaments page */
-router.get('/mytournaments', RedirectLandingPage);
+router.get('/mytournaments/', RedirectLandingPage);
 
 /* Display add page. */
 router.get('/add',AuthGuard, DisplayAddPage);

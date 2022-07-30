@@ -20,14 +20,3 @@ export function AuthGuard(req: express.Request, res: express.Response, next: exp
     }
     next();
 }
-
-// convenience function to return the DisplayName of the User
-export function getUserId(req: express.Request): string
-{
-    if(req.user)
-    {
-        let user = req.user as UserDocument
-        return user._id.toString();
-    }
-    return '';
-}

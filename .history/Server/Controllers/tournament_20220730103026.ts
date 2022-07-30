@@ -18,10 +18,9 @@ export function DisplayLandingPage(req : express.Request, res : express.Response
     });
 };
 
-// display my tournament page
 export function DisplayMyTournamentPage(req : express.Request, res : express.Response, next : express.NextFunction) 
 {
-    Tournament.find({ "Owner.Id" : getUserId(req) } , function(err : CallbackError, tournaments : any)
+    Tournament.findOne({ "Owner.Id" : getUserId(req) } , function(err, tournaments)
     {
         if (err) 
         {
@@ -30,16 +29,9 @@ export function DisplayMyTournamentPage(req : express.Request, res : express.Res
         }
 
         // show the landing page with the data
-        res.render('index', {title: 'My Tournaments', page: 'mytournaments', tournament: tournaments, displayName: UserDisplayName(req), userId : getUserId(req)});
+        res.render('index', {title: 'Home', page: 'home', tournament: tournaments, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 };
-
-// redirect landing page
-export function RedirectLandingPage(req : express.Request, res : express.Response, next : express.NextFunction) 
-{
-    res.redirect('/login');
-};
-
 
 
 // display add page

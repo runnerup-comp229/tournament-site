@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 // import the controller module
-import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayCurrentRound, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage, DisplayFirstRound, ProcessFirstRoundAdvance, ProcessSemisAdvance, ProcessRunnerUpAdvance, ProcessFinalAdvance, DisplayMyTournamentPage, RedirectLandingPage} from "../Controllers/tournament";
+import {DisplayAddPage, DisplayEditPage, DisplayFinalPage, DisplayCurrentRound, DisplayLandingPage, DisplayManagePage, DisplayRunnerUpPage, DisplaySemiFinalPage, DisplayWinnersPage, ProcessAddPage, ProcessDeletePage, ProcessEditPage, ProcessManagePage, DisplayFirstRound, ProcessFirstRoundAdvance, ProcessSemisAdvance, ProcessRunnerUpAdvance, ProcessFinalAdvance} from "../Controllers/tournament";
 import { AuthGuard } from '../Util';
 
 
@@ -11,12 +11,6 @@ router.get('/', DisplayLandingPage);
 
 /* Display home page. */
 router.get('/home', DisplayLandingPage);
-
-/* Display my tournaments page */
-router.get('/mytournaments/:id',AuthGuard, DisplayMyTournamentPage);
-
-/* Display my tournaments page */
-router.get('/mytournaments', RedirectLandingPage);
 
 /* Display add page. */
 router.get('/add',AuthGuard, DisplayAddPage);
