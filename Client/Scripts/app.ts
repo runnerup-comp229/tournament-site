@@ -25,7 +25,7 @@
                 location.href = "/edit/" + pathArray[pathArray.length - 1] ; 
             };
         });
-        
+
     };
 
     window.addEventListener("load", Start);

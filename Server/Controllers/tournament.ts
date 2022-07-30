@@ -377,3 +377,246 @@ export function DisplayWinnersPage(req : express.Request, res : express.Response
       })};
     });
 };
+
+export function ProcessFirstRoundAdvance(req : express.Request, res : express.Response, next : express.NextFunction) {
+    // declaring and initializing parameter variables
+    let id = req.params.id;
+    let boutnum = req.params.boutnum;
+    let winner = req.params.winner;
+    let updateTournament=new Tournament();
+    // find tournament with id    
+    Tournament.findById(id, {}, {}, (err, tournament ) => {
+         if (err)
+         {
+           return console.error(err);
+         } 
+
+         // create new tournament object to update according to winner
+         switch(boutnum){
+            case '1':
+                updateTournament = new Tournament
+                ({  "_id": id,
+                    "Name" : tournament.Name,
+                    "Owner" : tournament.Owner,
+                    "isActive" : false,
+                    "Participants" : tournament.Participants,
+                    "SemiFinal" : [winner,tournament.SemiFinal[1],tournament.SemiFinal[2],tournament.SemiFinal[3]],
+                    "Final" : tournament.Final,
+                    "RunnerUp" : tournament.RunnerUp,
+                    "First": tournament.First,
+                    "Second": tournament.Second,
+                    "Third": tournament.Third,
+                    "Fourth": tournament.Fourth
+                });
+                break;
+            case '2': 
+                updateTournament = new Tournament
+                ({  "_id": id,
+                    "Name" : tournament.Name,
+                    "Owner" : tournament.Owner,
+                    "isActive" : false,
+                    "Participants" : tournament.Participants,
+                    "SemiFinal" : [tournament.SemiFinal[0],winner,tournament.SemiFinal[2],tournament.SemiFinal[3]],
+                    "Final" : tournament.Final,
+                    "RunnerUp" : tournament.RunnerUp,
+                    "First": tournament.First,
+                    "Second": tournament.Second,
+                    "Third": tournament.Third,
+                    "Fourth": tournament.Fourth
+                });
+                break;
+            case '3':
+                updateTournament = new Tournament
+                ({  "_id": id,
+                    "Name" : tournament.Name,
+                    "Owner" : tournament.Owner,
+                    "isActive" : false,
+                    "Participants" : tournament.Participants,
+                    "SemiFinal" : [tournament.SemiFinal[0],tournament.SemiFinal[1],winner,tournament.SemiFinal[3]],
+                    "Final" : tournament.Final,
+                    "RunnerUp" : tournament.RunnerUp,
+                    "First": tournament.First,
+                    "Second": tournament.Second,
+                    "Third": tournament.Third,
+                    "Fourth": tournament.Fourth
+                });
+                break;
+            case '4':
+                updateTournament = new Tournament
+                ({  "_id": id,
+                    "Name" : tournament.Name,
+                    "Owner" : tournament.Owner,
+                    "isActive" : false,
+                    "Participants" : tournament.Participants,
+                    "SemiFinal" : [tournament.SemiFinal[0],tournament.SemiFinal[1],tournament.SemiFinal[2],winner],
+                    "Final" : tournament.Final,
+                    "RunnerUp" : tournament.RunnerUp,
+                    "First": tournament.First,
+                    "Second": tournament.Second,
+                    "Third": tournament.Third,
+                    "Fourth": tournament.Fourth
+                });
+                break;
+            }
+            // insert the new tournament object into the database (runnerup collection)
+            Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
+            {
+                if (err)
+                {
+                    console.error(err);
+                    res.end(err);
+                };
+            })
+
+        // edit successful
+        res.redirect('/'+id+'/firstround');
+    });
+};
+
+//SemiFinal Advancement
+export function ProcessSemisAdvance(req : express.Request, res : express.Response, next : express.NextFunction) {
+    // declaring and initializing parameter variables
+    let id = req.params.id;
+    let boutnum = req.params.boutnum;
+    let winner = req.params.winner;
+    let second = req.params.second;
+    let updateTournament=new Tournament();
+    // find tournament with id    
+    Tournament.findById(id, {}, {}, (err, tournament ) => {
+         if (err)
+         {
+           return console.error(err);
+         }
+         switch (boutnum){
+            case '1':
+                updateTournament = new Tournament
+                ({  "_id": id,
+                    "Name" : tournament.Name,
+                    "Owner" : tournament.Owner,
+                    "isActive" : false,
+                    "Participants" : tournament.Participants,
+                    "SemiFinal" : tournament.SemiFinal,
+                    "Final" : [winner, tournament.Final[1]],
+                    "RunnerUp" : [second, tournament.RunnerUp[1]],
+                    "First": tournament.First,
+                    "Second": tournament.Second,
+                    "Third": tournament.Third,
+                    "Fourth": tournament.Fourth
+                });
+                break;
+            case '2':
+                case '1':
+                    updateTournament = new Tournament
+                    ({  "_id": id,
+                        "Name" : tournament.Name,
+                        "Owner" : tournament.Owner,
+                        "isActive" : false,
+                        "Participants" : tournament.Participants,
+                        "SemiFinal" : tournament.SemiFinal,
+                        "Final" : [tournament.Final[0],winner],
+                        "RunnerUp" : [tournament.RunnerUp[0],second],
+                        "First": tournament.First,
+                        "Second": tournament.Second,
+                        "Third": tournament.Third,
+                        "Fourth": tournament.Fourth
+                    });
+                break;
+         }
+         Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
+            {
+                if (err)
+                {
+                    console.error(err);
+                    res.end(err);
+                };
+            })
+         // edit successful
+        res.redirect('/'+id+'/semifinal');
+        })
+}; 
+
+    //RunnerUp Advancement
+export function ProcessRunnerUpAdvance(req : express.Request, res : express.Response, next : express.NextFunction) {
+    // declaring and initializing parameter variables
+    let id = req.params.id;
+    
+    let winner = req.params.winner;
+    let second = req.params.second;
+    let updateTournament=new Tournament();
+    // find tournament with id    
+    Tournament.findById(id, {}, {}, (err, tournament ) => {
+            if (err)
+            {
+            return console.error(err);
+            }
+        
+            updateTournament = new Tournament
+            ({  "_id": id,
+                "Name" : tournament.Name,
+                "Owner" : tournament.Owner,
+                "isActive" : false,
+                "Participants" : tournament.Participants,
+                "SemiFinal" : tournament.SemiFinal,
+                "Final" : tournament.Final,
+                "RunnerUp" : tournament.RunnerUp,
+                "First": tournament.First,
+                "Second": tournament.Second,
+                "Third": winner,
+                "Fourth": second
+            });
+            
+            Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
+            {
+                if (err)
+                {
+                    console.error(err);
+                    res.end(err);
+                };
+            })
+            // edit successful
+        res.redirect('/'+id+'/runnerup');
+        })
+    }; 
+
+     //RunnerUp Advancement
+export function ProcessFinalAdvance(req : express.Request, res : express.Response, next : express.NextFunction) {
+    // declaring and initializing parameter variables
+    let id = req.params.id;
+    
+    let winner = req.params.winner;
+    let second = req.params.second;
+    let updateTournament=new Tournament();
+    // find tournament with id    
+    Tournament.findById(id, {}, {}, (err, tournament ) => {
+            if (err)
+            {
+            return console.error(err);
+            }
+        
+            updateTournament = new Tournament
+            ({  "_id": id,
+                "Name" : tournament.Name,
+                "Owner" : tournament.Owner,
+                "isActive" : false,
+                "Participants" : tournament.Participants,
+                "SemiFinal" : tournament.SemiFinal,
+                "Final" : tournament.Final,
+                "RunnerUp" : tournament.RunnerUp,
+                "First": winner,
+                "Second": second,
+                "Third": tournament.third,
+                "Fourth": tournament.fourth
+            });
+            
+            Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
+            {
+                if (err)
+                {
+                    console.error(err);
+                    res.end(err);
+                };
+            })
+            // edit successful
+        res.redirect('/'+id+'/final');
+        })
+    };
