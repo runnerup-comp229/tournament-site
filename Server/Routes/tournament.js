@@ -21,5 +21,9 @@ router.get('/:id/final', tournament_1.DisplayFinalPage);
 router.get('/manage/:id', tournament_1.DisplayManagePage);
 router.post('/manage/:id', tournament_1.ProcessManagePage);
 router.get('/:id/winners', tournament_1.DisplayWinnersPage);
+router.get('/:id/firstround/:boutnum/:winner', tournament_1.ProcessFirstRoundAdvance);
+router.get('/:id/semifinal/:boutnum/:winner/:second', tournament_1.ProcessSemisAdvance);
+router.get('/:id/runnerup/:winner/:second', tournament_1.ProcessRunnerUpAdvance);
+router.get('/:id/final/:winner/:second', tournament_1.ProcessFinalAdvance);
 exports.default = router;
 //# sourceMappingURL=tournament.js.map
