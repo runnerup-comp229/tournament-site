@@ -9,6 +9,8 @@ const tournament_1 = require("../Controllers/tournament");
 const Util_1 = require("../Util");
 router.get('/', tournament_1.DisplayLandingPage);
 router.get('/home', tournament_1.DisplayLandingPage);
+router.get('/mytournaments/:id', Util_1.AuthGuard, tournament_1.DisplayMyTournamentPage);
+router.get('/mytournaments', tournament_1.RedirectLandingPage);
 router.get('/add', Util_1.AuthGuard, tournament_1.DisplayAddPage);
 router.post('/add', Util_1.AuthGuard, tournament_1.ProcessAddPage);
 router.get('/view/:id', tournament_1.DisplayCurrentRound);

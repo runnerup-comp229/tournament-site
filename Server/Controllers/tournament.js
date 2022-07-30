@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessFinalAdvance = exports.ProcessRunnerUpAdvance = exports.ProcessSemisAdvance = exports.ProcessFirstRoundAdvance = exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplayLandingPage = void 0;
+exports.ProcessFinalAdvance = exports.ProcessRunnerUpAdvance = exports.ProcessSemisAdvance = exports.ProcessFirstRoundAdvance = exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.RedirectLandingPage = exports.DisplayMyTournamentPage = exports.DisplayLandingPage = void 0;
 const tournament_1 = __importDefault(require("../Models/tournament"));
 const Util_1 = require("../Util");
 function DisplayLandingPage(req, res, next) {
@@ -12,10 +12,26 @@ function DisplayLandingPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Home', page: 'home', tournament: tournaments, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('index', { title: 'Home', page: 'home', tournament: tournaments, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
     });
 }
 exports.DisplayLandingPage = DisplayLandingPage;
+;
+function DisplayMyTournamentPage(req, res, next) {
+    tournament_1.default.find({ "Owner.Id": (0, Util_1.getUserId)(req) }, function (err, tournaments) {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.render('index', { title: 'My Tournaments', page: 'mytournaments', tournament: tournaments, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
+    });
+}
+exports.DisplayMyTournamentPage = DisplayMyTournamentPage;
+;
+function RedirectLandingPage(req, res, next) {
+    res.redirect('/login');
+}
+exports.RedirectLandingPage = RedirectLandingPage;
 ;
 function DisplayAddPage(req, res, next) {
     res.render('index', { title: 'Add', page: 'edit', tournament: '', displayName: (0, Util_1.UserDisplayName)(req) });

@@ -37,7 +37,7 @@ export function DisplayMyTournamentPage(req : express.Request, res : express.Res
 // redirect landing page
 export function RedirectLandingPage(req : express.Request, res : express.Response, next : express.NextFunction) 
 {
-    res.redirect('/login');
+    res.redirect('/home');
 };
 
 
