@@ -498,7 +498,6 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
         // edit successful
         res.redirect('/'+id+'/firstround');
          }
-         else { res.redirect('/'+id+'/firstround')};
 
          
     });
@@ -518,7 +517,6 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
          {
            return console.error(err);
          }
-         if (tournament.Owner.Id == getUserId(req)){
          switch (boutnum){
             case '1':
                 updateTournament = new Tournament
@@ -564,8 +562,7 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
             })
          // edit successful
         res.redirect('/'+id+'/semifinal');
-} else { res.redirect('/'+id+'/semifinal')};
-})
+        })
 }; 
 
     //RunnerUp Advancement
@@ -582,7 +579,7 @@ export function ProcessRunnerUpAdvance(req : express.Request, res : express.Resp
             {
             return console.error(err);
             }
-            if (tournament.Owner.Id == getUserId(req)){
+        
             updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
@@ -608,8 +605,7 @@ export function ProcessRunnerUpAdvance(req : express.Request, res : express.Resp
             })
             // edit successful
         res.redirect('/'+id+'/runnerup');
-} else { res.redirect('/'+id+'/runnerup')};
-})
+        })
     }; 
 
      //RunnerUp Advancement
@@ -626,7 +622,7 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
             {
             return console.error(err);
             }
-            if (tournament.Owner.Id == getUserId(req)){
+        
             updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
@@ -652,6 +648,5 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
             })
             // edit successful
         res.redirect('/'+id+'/final');
-} else { res.redirect('/'+id+'/final')};
-})
+        })
     };
