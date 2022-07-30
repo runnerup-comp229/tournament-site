@@ -31,7 +31,7 @@ export function ProcessAddPage(req : express.Request, res : express.Response, ne
     let newTournament = new Tournament
     ({
         "Name" : req.body.name,
-        "Owner" : {"Id" : getUserId(req), "DisplayName": UserDisplayName(req)},
+        "Owner" : getUserId,
         "isActive" : true,
         "Participants" : [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6,req.body.team7, req.body.team8],
         "SemiFinal" : ["","","",""],
@@ -147,7 +147,7 @@ export function ProcessEditPage(req : express.Request, res : express.Response, n
          let updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : req.body.name,
-                "Owner" : {"Id" : getUserId(req), "DisplayName": UserDisplayName(req)},
+                "Owner" : req.body.owner,
                 "isActive" : true,
                 "Participants" : [tournament.Participants[0],tournament.Participants[1],tournament.Participants[2],tournament.Participants[3],tournament.Participants[4],tournament.Participants[5],tournament.Participants[6],tournament.Participants[7]],
                 "SemiFinal" : [tournament.SemiFinal[0],tournament.SemiFinal[1],tournament.SemiFinal[2],tournament.SemiFinal[3]],
@@ -297,7 +297,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
             let updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
-                "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                "Owner" : tournament.Owner,
                 "isActive" : true,
                 "Participants" : [req.body.team1,req.body.team2,req.body.team3,req.body.team4,req.body.team5,req.body.team6,req.body.team7,req.body.team8],
                 "SemiFinal" : [req.body.sfteam1,req.body.sfteam2,req.body.sfteam3,req.body.sfteam4],
@@ -327,7 +327,7 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
             let updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
-                "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                "Owner" : tournament.Owner,
                 "isActive" : false,
                 "Participants" : [req.body.team1,req.body.team2,req.body.team3,req.body.team4,req.body.team5,req.body.team6,req.body.team7,req.body.team8],
                 "SemiFinal" : [req.body.sfteam1,req.body.sfteam2,req.body.sfteam3,req.body.sfteam4],
@@ -397,7 +397,7 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
-                    "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                    "Owner" : tournament.Owner,
                     "isActive" : false,
                     "Participants" : tournament.Participants,
                     "SemiFinal" : [winner,tournament.SemiFinal[1],tournament.SemiFinal[2],tournament.SemiFinal[3]],
@@ -413,7 +413,7 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
-                    "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                    "Owner" : tournament.Owner,
                     "isActive" : false,
                     "Participants" : tournament.Participants,
                     "SemiFinal" : [tournament.SemiFinal[0],winner,tournament.SemiFinal[2],tournament.SemiFinal[3]],
@@ -429,7 +429,7 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
-                    "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                    "Owner" : tournament.Owner,
                     "isActive" : false,
                     "Participants" : tournament.Participants,
                     "SemiFinal" : [tournament.SemiFinal[0],tournament.SemiFinal[1],winner,tournament.SemiFinal[3]],
@@ -445,7 +445,7 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
-                    "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                    "Owner" : tournament.Owner,
                     "isActive" : false,
                     "Participants" : tournament.Participants,
                     "SemiFinal" : [tournament.SemiFinal[0],tournament.SemiFinal[1],tournament.SemiFinal[2],winner],
@@ -492,7 +492,7 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
-                    "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                    "Owner" : tournament.Owner,
                     "isActive" : false,
                     "Participants" : tournament.Participants,
                     "SemiFinal" : tournament.SemiFinal,
@@ -509,7 +509,7 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
                     updateTournament = new Tournament
                     ({  "_id": id,
                         "Name" : tournament.Name,
-                        "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                        "Owner" : tournament.Owner,
                         "isActive" : false,
                         "Participants" : tournament.Participants,
                         "SemiFinal" : tournament.SemiFinal,
@@ -553,7 +553,7 @@ export function ProcessRunnerUpAdvance(req : express.Request, res : express.Resp
             updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
-                "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                "Owner" : tournament.Owner,
                 "isActive" : false,
                 "Participants" : tournament.Participants,
                 "SemiFinal" : tournament.SemiFinal,
@@ -596,7 +596,7 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
             updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
-                "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
+                "Owner" : tournament.Owner,
                 "isActive" : false,
                 "Participants" : tournament.Participants,
                 "SemiFinal" : tournament.SemiFinal,

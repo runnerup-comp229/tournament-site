@@ -24,7 +24,7 @@ exports.DisplayAddPage = DisplayAddPage;
 function ProcessAddPage(req, res, next) {
     let newTournament = new tournament_1.default({
         "Name": req.body.name,
-        "Owner": req.body.owner,
+        "Owner": { "Id": (0, Util_1.getUserId)(req), "DisplayName": (0, Util_1.UserDisplayName)(req) },
         "isActive": true,
         "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8],
         "SemiFinal": ["", "", "", ""],
@@ -108,7 +108,7 @@ function ProcessEditPage(req, res, next) {
         }
         let updateTournament = new tournament_1.default({ "_id": id,
             "Name": req.body.name,
-            "Owner": req.body.owner,
+            "Owner": { "Id": (0, Util_1.getUserId)(req), "DisplayName": (0, Util_1.UserDisplayName)(req) },
             "isActive": true,
             "Participants": [tournament.Participants[0], tournament.Participants[1], tournament.Participants[2], tournament.Participants[3], tournament.Participants[4], tournament.Participants[5], tournament.Participants[6], tournament.Participants[7]],
             "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
@@ -207,7 +207,7 @@ function ProcessManagePage(req, res, next) {
         if (req.body.first == "" || req.body.second == "" || req.body.third == "" || req.body.fourth == "") {
             let updateTournament = new tournament_1.default({ "_id": id,
                 "Name": tournament.Name,
-                "Owner": tournament.Owner,
+                "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                 "isActive": true,
                 "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8],
                 "SemiFinal": [req.body.sfteam1, req.body.sfteam2, req.body.sfteam3, req.body.sfteam4],
@@ -230,7 +230,7 @@ function ProcessManagePage(req, res, next) {
         else {
             let updateTournament = new tournament_1.default({ "_id": id,
                 "Name": tournament.Name,
-                "Owner": tournament.Owner,
+                "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                 "isActive": false,
                 "Participants": [req.body.team1, req.body.team2, req.body.team3, req.body.team4, req.body.team5, req.body.team6, req.body.team7, req.body.team8],
                 "SemiFinal": [req.body.sfteam1, req.body.sfteam2, req.body.sfteam3, req.body.sfteam4],
@@ -286,7 +286,7 @@ function ProcessFirstRoundAdvance(req, res, next) {
             case '1':
                 updateTournament = new tournament_1.default({ "_id": id,
                     "Name": tournament.Name,
-                    "Owner": tournament.Owner,
+                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                     "isActive": false,
                     "Participants": tournament.Participants,
                     "SemiFinal": [winner, tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
@@ -301,7 +301,7 @@ function ProcessFirstRoundAdvance(req, res, next) {
             case '2':
                 updateTournament = new tournament_1.default({ "_id": id,
                     "Name": tournament.Name,
-                    "Owner": tournament.Owner,
+                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                     "isActive": false,
                     "Participants": tournament.Participants,
                     "SemiFinal": [tournament.SemiFinal[0], winner, tournament.SemiFinal[2], tournament.SemiFinal[3]],
@@ -316,7 +316,7 @@ function ProcessFirstRoundAdvance(req, res, next) {
             case '3':
                 updateTournament = new tournament_1.default({ "_id": id,
                     "Name": tournament.Name,
-                    "Owner": tournament.Owner,
+                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                     "isActive": false,
                     "Participants": tournament.Participants,
                     "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], winner, tournament.SemiFinal[3]],
@@ -331,7 +331,7 @@ function ProcessFirstRoundAdvance(req, res, next) {
             case '4':
                 updateTournament = new tournament_1.default({ "_id": id,
                     "Name": tournament.Name,
-                    "Owner": tournament.Owner,
+                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                     "isActive": false,
                     "Participants": tournament.Participants,
                     "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], winner],
@@ -370,7 +370,7 @@ function ProcessSemisAdvance(req, res, next) {
             case '1':
                 updateTournament = new tournament_1.default({ "_id": id,
                     "Name": tournament.Name,
-                    "Owner": tournament.Owner,
+                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                     "isActive": false,
                     "Participants": tournament.Participants,
                     "SemiFinal": tournament.SemiFinal,
@@ -386,7 +386,7 @@ function ProcessSemisAdvance(req, res, next) {
             case '1':
                 updateTournament = new tournament_1.default({ "_id": id,
                     "Name": tournament.Name,
-                    "Owner": tournament.Owner,
+                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
                     "isActive": false,
                     "Participants": tournament.Participants,
                     "SemiFinal": tournament.SemiFinal,
@@ -422,7 +422,7 @@ function ProcessRunnerUpAdvance(req, res, next) {
         }
         updateTournament = new tournament_1.default({ "_id": id,
             "Name": tournament.Name,
-            "Owner": tournament.Owner,
+            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
             "isActive": false,
             "Participants": tournament.Participants,
             "SemiFinal": tournament.SemiFinal,
@@ -456,7 +456,7 @@ function ProcessFinalAdvance(req, res, next) {
         }
         updateTournament = new tournament_1.default({ "_id": id,
             "Name": tournament.Name,
-            "Owner": tournament.Owner,
+            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
             "isActive": false,
             "Participants": tournament.Participants,
             "SemiFinal": tournament.SemiFinal,
