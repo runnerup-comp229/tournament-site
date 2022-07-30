@@ -51,7 +51,7 @@ function ProcessRegisterPage(req, res, next) {
                 console.error(err.name);
                 req.flash('registerMessage', 'Server Error');
             }
-            return res.redirect('/tournament');
+            return res.redirect('/home');
         }
         return passport_1.default.authenticate('local')(req, res, function () {
             return res.redirect('/home');
