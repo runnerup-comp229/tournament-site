@@ -298,76 +298,82 @@ function ProcessFirstRoundAdvance(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        switch (boutnum) {
-            case '1':
-                updateTournament = new tournament_1.default({ "_id": id,
-                    "Name": tournament.Name,
-                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                    "isActive": false,
-                    "Participants": tournament.Participants,
-                    "SemiFinal": [winner, tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
-                    "Final": tournament.Final,
-                    "RunnerUp": tournament.RunnerUp,
-                    "First": tournament.First,
-                    "Second": tournament.Second,
-                    "Third": tournament.Third,
-                    "Fourth": tournament.Fourth
-                });
-                break;
-            case '2':
-                updateTournament = new tournament_1.default({ "_id": id,
-                    "Name": tournament.Name,
-                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                    "isActive": false,
-                    "Participants": tournament.Participants,
-                    "SemiFinal": [tournament.SemiFinal[0], winner, tournament.SemiFinal[2], tournament.SemiFinal[3]],
-                    "Final": tournament.Final,
-                    "RunnerUp": tournament.RunnerUp,
-                    "First": tournament.First,
-                    "Second": tournament.Second,
-                    "Third": tournament.Third,
-                    "Fourth": tournament.Fourth
-                });
-                break;
-            case '3':
-                updateTournament = new tournament_1.default({ "_id": id,
-                    "Name": tournament.Name,
-                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                    "isActive": false,
-                    "Participants": tournament.Participants,
-                    "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], winner, tournament.SemiFinal[3]],
-                    "Final": tournament.Final,
-                    "RunnerUp": tournament.RunnerUp,
-                    "First": tournament.First,
-                    "Second": tournament.Second,
-                    "Third": tournament.Third,
-                    "Fourth": tournament.Fourth
-                });
-                break;
-            case '4':
-                updateTournament = new tournament_1.default({ "_id": id,
-                    "Name": tournament.Name,
-                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                    "isActive": false,
-                    "Participants": tournament.Participants,
-                    "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], winner],
-                    "Final": tournament.Final,
-                    "RunnerUp": tournament.RunnerUp,
-                    "First": tournament.First,
-                    "Second": tournament.Second,
-                    "Third": tournament.Third,
-                    "Fourth": tournament.Fourth
-                });
-                break;
-        }
-        tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
-            if (err) {
-                console.error(err);
-                res.end(err);
+        if (tournament.Owner.Id == (0, Util_1.getUserId)(req)) {
+            switch (boutnum) {
+                case '1':
+                    updateTournament = new tournament_1.default({ "_id": id,
+                        "Name": tournament.Name,
+                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                        "isActive": false,
+                        "Participants": tournament.Participants,
+                        "SemiFinal": [winner, tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
+                        "Final": tournament.Final,
+                        "RunnerUp": tournament.RunnerUp,
+                        "First": tournament.First,
+                        "Second": tournament.Second,
+                        "Third": tournament.Third,
+                        "Fourth": tournament.Fourth
+                    });
+                    break;
+                case '2':
+                    updateTournament = new tournament_1.default({ "_id": id,
+                        "Name": tournament.Name,
+                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                        "isActive": false,
+                        "Participants": tournament.Participants,
+                        "SemiFinal": [tournament.SemiFinal[0], winner, tournament.SemiFinal[2], tournament.SemiFinal[3]],
+                        "Final": tournament.Final,
+                        "RunnerUp": tournament.RunnerUp,
+                        "First": tournament.First,
+                        "Second": tournament.Second,
+                        "Third": tournament.Third,
+                        "Fourth": tournament.Fourth
+                    });
+                    break;
+                case '3':
+                    updateTournament = new tournament_1.default({ "_id": id,
+                        "Name": tournament.Name,
+                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                        "isActive": false,
+                        "Participants": tournament.Participants,
+                        "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], winner, tournament.SemiFinal[3]],
+                        "Final": tournament.Final,
+                        "RunnerUp": tournament.RunnerUp,
+                        "First": tournament.First,
+                        "Second": tournament.Second,
+                        "Third": tournament.Third,
+                        "Fourth": tournament.Fourth
+                    });
+                    break;
+                case '4':
+                    updateTournament = new tournament_1.default({ "_id": id,
+                        "Name": tournament.Name,
+                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                        "isActive": false,
+                        "Participants": tournament.Participants,
+                        "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], winner],
+                        "Final": tournament.Final,
+                        "RunnerUp": tournament.RunnerUp,
+                        "First": tournament.First,
+                        "Second": tournament.Second,
+                        "Third": tournament.Third,
+                        "Fourth": tournament.Fourth
+                    });
+                    break;
             }
-            ;
-        });
-        res.redirect('/' + id + '/firstround');
+            tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.end(err);
+                }
+                ;
+            });
+            res.redirect('/' + id + '/firstround');
+        }
+        else {
+            res.redirect('/' + id + '/firstround');
+        }
+        ;
     });
 }
 exports.ProcessFirstRoundAdvance = ProcessFirstRoundAdvance;
@@ -382,47 +388,53 @@ function ProcessSemisAdvance(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        switch (boutnum) {
-            case '1':
-                updateTournament = new tournament_1.default({ "_id": id,
-                    "Name": tournament.Name,
-                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                    "isActive": false,
-                    "Participants": tournament.Participants,
-                    "SemiFinal": tournament.SemiFinal,
-                    "Final": [winner, tournament.Final[1]],
-                    "RunnerUp": [second, tournament.RunnerUp[1]],
-                    "First": tournament.First,
-                    "Second": tournament.Second,
-                    "Third": tournament.Third,
-                    "Fourth": tournament.Fourth
-                });
-                break;
-            case '2':
-            case '1':
-                updateTournament = new tournament_1.default({ "_id": id,
-                    "Name": tournament.Name,
-                    "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                    "isActive": false,
-                    "Participants": tournament.Participants,
-                    "SemiFinal": tournament.SemiFinal,
-                    "Final": [tournament.Final[0], winner],
-                    "RunnerUp": [tournament.RunnerUp[0], second],
-                    "First": tournament.First,
-                    "Second": tournament.Second,
-                    "Third": tournament.Third,
-                    "Fourth": tournament.Fourth
-                });
-                break;
-        }
-        tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
-            if (err) {
-                console.error(err);
-                res.end(err);
+        if (tournament.Owner.Id == (0, Util_1.getUserId)(req)) {
+            switch (boutnum) {
+                case '1':
+                    updateTournament = new tournament_1.default({ "_id": id,
+                        "Name": tournament.Name,
+                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                        "isActive": false,
+                        "Participants": tournament.Participants,
+                        "SemiFinal": tournament.SemiFinal,
+                        "Final": [winner, tournament.Final[1]],
+                        "RunnerUp": [second, tournament.RunnerUp[1]],
+                        "First": tournament.First,
+                        "Second": tournament.Second,
+                        "Third": tournament.Third,
+                        "Fourth": tournament.Fourth
+                    });
+                    break;
+                case '2':
+                case '1':
+                    updateTournament = new tournament_1.default({ "_id": id,
+                        "Name": tournament.Name,
+                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                        "isActive": false,
+                        "Participants": tournament.Participants,
+                        "SemiFinal": tournament.SemiFinal,
+                        "Final": [tournament.Final[0], winner],
+                        "RunnerUp": [tournament.RunnerUp[0], second],
+                        "First": tournament.First,
+                        "Second": tournament.Second,
+                        "Third": tournament.Third,
+                        "Fourth": tournament.Fourth
+                    });
+                    break;
             }
-            ;
-        });
-        res.redirect('/' + id + '/semifinal');
+            tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.end(err);
+                }
+                ;
+            });
+            res.redirect('/' + id + '/semifinal');
+        }
+        else {
+            res.redirect('/' + id + '/semifinal');
+        }
+        ;
     });
 }
 exports.ProcessSemisAdvance = ProcessSemisAdvance;
@@ -436,27 +448,33 @@ function ProcessRunnerUpAdvance(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        updateTournament = new tournament_1.default({ "_id": id,
-            "Name": tournament.Name,
-            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-            "isActive": false,
-            "Participants": tournament.Participants,
-            "SemiFinal": tournament.SemiFinal,
-            "Final": tournament.Final,
-            "RunnerUp": tournament.RunnerUp,
-            "First": tournament.First,
-            "Second": tournament.Second,
-            "Third": winner,
-            "Fourth": second
-        });
-        tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
-            if (err) {
-                console.error(err);
-                res.end(err);
-            }
-            ;
-        });
-        res.redirect('/' + id + '/runnerup');
+        if (tournament.Owner.Id == (0, Util_1.getUserId)(req)) {
+            updateTournament = new tournament_1.default({ "_id": id,
+                "Name": tournament.Name,
+                "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                "isActive": false,
+                "Participants": tournament.Participants,
+                "SemiFinal": tournament.SemiFinal,
+                "Final": tournament.Final,
+                "RunnerUp": tournament.RunnerUp,
+                "First": tournament.First,
+                "Second": tournament.Second,
+                "Third": winner,
+                "Fourth": second
+            });
+            tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.end(err);
+                }
+                ;
+            });
+            res.redirect('/' + id + '/runnerup');
+        }
+        else {
+            res.redirect('/' + id + '/runnerup');
+        }
+        ;
     });
 }
 exports.ProcessRunnerUpAdvance = ProcessRunnerUpAdvance;
@@ -470,27 +488,33 @@ function ProcessFinalAdvance(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        updateTournament = new tournament_1.default({ "_id": id,
-            "Name": tournament.Name,
-            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-            "isActive": false,
-            "Participants": tournament.Participants,
-            "SemiFinal": tournament.SemiFinal,
-            "Final": tournament.Final,
-            "RunnerUp": tournament.RunnerUp,
-            "First": winner,
-            "Second": second,
-            "Third": tournament.third,
-            "Fourth": tournament.fourth
-        });
-        tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
-            if (err) {
-                console.error(err);
-                res.end(err);
-            }
-            ;
-        });
-        res.redirect('/' + id + '/final');
+        if (tournament.Owner.Id == (0, Util_1.getUserId)(req)) {
+            updateTournament = new tournament_1.default({ "_id": id,
+                "Name": tournament.Name,
+                "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                "isActive": false,
+                "Participants": tournament.Participants,
+                "SemiFinal": tournament.SemiFinal,
+                "Final": tournament.Final,
+                "RunnerUp": tournament.RunnerUp,
+                "First": winner,
+                "Second": second,
+                "Third": tournament.third,
+                "Fourth": tournament.fourth
+            });
+            tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.end(err);
+                }
+                ;
+            });
+            res.redirect('/' + id + '/final');
+        }
+        else {
+            res.redirect('/' + id + '/final');
+        }
+        ;
     });
 }
 exports.ProcessFinalAdvance = ProcessFinalAdvance;

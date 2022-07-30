@@ -415,8 +415,7 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
            return console.error(err);
          } 
 
-         if (tournament.Owner.Id == getUserId(req)){
-            // create new tournament object to update according to winner
+         // create new tournament object to update according to winner
          switch(boutnum){
             case '1':
                 updateTournament = new Tournament
@@ -482,10 +481,8 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                     "Fourth": tournament.Fourth
                 });
                 break;
-            }
 
-            
-            // insert the new tournament object into the database (runnerup collection)
+                // insert the new tournament object into the database (runnerup collection)
             Tournament.updateOne({"_id" : id}, updateTournament, function(err : CallbackError)
             {
                 if (err)
@@ -494,13 +491,13 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                     res.end(err);
                 };
             })
+            }
+
+            
+            
 
         // edit successful
         res.redirect('/'+id+'/firstround');
-         }
-         else { res.redirect('/'+id+'/firstround')};
-
-         
     });
 };
 
@@ -518,7 +515,6 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
          {
            return console.error(err);
          }
-         if (tournament.Owner.Id == getUserId(req)){
          switch (boutnum){
             case '1':
                 updateTournament = new Tournament
@@ -564,8 +560,7 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
             })
          // edit successful
         res.redirect('/'+id+'/semifinal');
-} else { res.redirect('/'+id+'/semifinal')};
-})
+        })
 }; 
 
     //RunnerUp Advancement
@@ -582,7 +577,7 @@ export function ProcessRunnerUpAdvance(req : express.Request, res : express.Resp
             {
             return console.error(err);
             }
-            if (tournament.Owner.Id == getUserId(req)){
+        
             updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
@@ -608,8 +603,7 @@ export function ProcessRunnerUpAdvance(req : express.Request, res : express.Resp
             })
             // edit successful
         res.redirect('/'+id+'/runnerup');
-} else { res.redirect('/'+id+'/runnerup')};
-})
+        })
     }; 
 
      //RunnerUp Advancement
@@ -626,7 +620,7 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
             {
             return console.error(err);
             }
-            if (tournament.Owner.Id == getUserId(req)){
+        
             updateTournament = new Tournament
             ({  "_id": id,
                 "Name" : tournament.Name,
@@ -652,6 +646,5 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
             })
             // edit successful
         res.redirect('/'+id+'/final');
-} else { res.redirect('/'+id+'/final')};
-})
+        })
     };
