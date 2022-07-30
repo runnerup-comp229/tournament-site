@@ -1,0 +1,92 @@
+<div class="container">
+    <h1 class="col-lg-6 col-md-10 col-sm-10"><% if(title == "Edit") { %> Edit <%= tournament.Name %> <% } else { %> Add Tournament <% } %> </h1>
+    <hr>
+    <div id="messageArea"></div>
+
+    <div class="row justify-content-lg-center g-3">
+      <form method="POST" class="col-lg-6 col-md-10 col-sm-10">
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">Tournament Name: </span>
+          <input id="name" name="name" type="text" class="form-control" 
+          value="<%= tournament.Name %>"
+          aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+        </div>
+
+        
+
+        <% if(tournament == "") { %>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Team 1: </span>
+                <input id="team1" name="team1" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Team 2: </span>
+                <input id="team2" name="team2" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Team 3: </span>
+                <input id="team3" name="team3" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Team 4: </span>
+                <input id="team4" name="team4" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Team 5: </span>
+                <input id="team5" name="team5" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Team 6: </span>
+                <input id="team6" name="team6" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Team 7: </span>
+                <input id="team7" name="team7" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Team 8: </span>
+                <input id="team8" name="team8" type="text" class="form-control" 
+                value="<%= (tournament == "") ? tournament : tournament.Participants[0] %>"
+                aria-label="Tournament Name" aria-describedby="Tournament Name Input" required>
+              </div>
+
+              
+              <% } %>  
+        
+        <% if(title == "Edit") { %>
+        <button id="editButton" type="submit" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
+        <td class="text-center"><a href="/delete/<%=tournament.id_%>" class="btn btn-danger deleteOnEdit"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
+        <% } else {%>
+        <button id="addButton" type="submit" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
+        <% } %>  
+        <a href="/home" id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo fa-lg"></i> Cancel</a>
+      
+      </form>
+      <p>
+    </p>
+    <p>
+    </p>
+    </div>
+</div>
