@@ -18,7 +18,7 @@ function DisplayLandingPage(req, res, next) {
 exports.DisplayLandingPage = DisplayLandingPage;
 ;
 function DisplayAddPage(req, res, next) {
-    res.render('index', { title: 'Add', page: 'edit', tournament: '' });
+    res.render('index', { title: 'Add', page: 'edit', tournament: '', displayName: (0, Util_1.UserDisplayName)(req) });
 }
 exports.DisplayAddPage = DisplayAddPage;
 function ProcessAddPage(req, res, next) {
@@ -78,7 +78,7 @@ function DisplayFirstRound(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'First-round', page: "tournament-firstround", tournament: tournamentToView });
+        res.render('index', { title: 'First-round', page: "tournament-firstround", tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplayFirstRound = DisplayFirstRound;
@@ -92,7 +92,7 @@ function DisplayEditPage(req, res, next) {
             res.render('index', {
                 title: 'Edit',
                 page: 'edit',
-                tournament: tournamentToEdit
+                tournament: tournamentToEdit, displayName: (0, Util_1.UserDisplayName)(req)
             });
         }
         ;
@@ -151,7 +151,7 @@ function DisplaySemiFinalPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Semi-Final', page: 'semifinal', tournament: tournamentToView });
+        res.render('index', { title: 'Semi-Final', page: 'semifinal', tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplaySemiFinalPage = DisplaySemiFinalPage;
@@ -163,7 +163,7 @@ function DisplayRunnerUpPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Runner-Up', page: 'runnerup', tournament: tournamentToView });
+        res.render('index', { title: 'Runner-Up', page: 'runnerup', tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplayRunnerUpPage = DisplayRunnerUpPage;
@@ -175,7 +175,7 @@ function DisplayFinalPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Final', page: 'final', tournament: tournamentToView });
+        res.render('index', { title: 'Final', page: 'final', tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplayFinalPage = DisplayFinalPage;
@@ -190,7 +190,7 @@ function DisplayManagePage(req, res, next) {
             res.render('index', {
                 title: 'Manage',
                 page: 'manage',
-                tournament: tournamentToEdit
+                tournament: tournamentToEdit, displayName: (0, Util_1.UserDisplayName)(req)
             });
         }
         ;
@@ -265,7 +265,7 @@ function DisplayWinnersPage(req, res, next) {
             res.render('index', {
                 title: 'Winners',
                 page: 'winners',
-                tournament: tournamentToEdit
+                tournament: tournamentToEdit, displayName: (0, Util_1.UserDisplayName)(req)
             });
         }
         ;
