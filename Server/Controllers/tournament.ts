@@ -1,7 +1,7 @@
 import express from 'express';
 import { CallbackError } from 'mongoose';
 import Tournament from '../Models/tournament'; 
-
+import { UserDisplayName } from '../Util';
 // display landing page
 export function DisplayLandingPage(req : express.Request, res : express.Response, next : express.NextFunction) 
 {
@@ -14,7 +14,7 @@ export function DisplayLandingPage(req : express.Request, res : express.Response
         }
 
         // show the landing page with the data
-        res.render('index', {title: 'Home', page: 'home', tournament: tournaments});
+        res.render('index', {title: 'Home', page: 'home', tournament: tournaments, displayName: UserDisplayName(req)});
     });
 };
 
