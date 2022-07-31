@@ -3,7 +3,7 @@ const router = express.Router();
 
 // import the controller module
 import { DisplayLoginPage,  DisplayRegisterPage,  ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage } from "../Controllers/auth";
-import { registerValidateCheck , validateRegister} from '../Util/validation';
+import { registerValidateCheck } from '../Util/validation';
 
 /* Display home page. */
 router.get('/login', DisplayLoginPage);
