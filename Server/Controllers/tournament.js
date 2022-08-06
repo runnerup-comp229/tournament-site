@@ -34,10 +34,11 @@ function RedirectLandingPage(req, res, next) {
 exports.RedirectLandingPage = RedirectLandingPage;
 ;
 function DisplayAddPage(req, res, next) {
-    res.render('index', { title: 'Add', page: 'edit', tournament: '', displayName: (0, Util_1.UserDisplayName)(req) });
+    res.render('index', { title: 'Add', page: 'edit', tournament: '', displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
 }
 exports.DisplayAddPage = DisplayAddPage;
 function ProcessAddPage(req, res, next) {
+    let uid = req.params.uid;
     let newTournament = new tournament_1.default({
         "Name": req.body.name,
         "Owner": { "Id": (0, Util_1.getUserId)(req), "DisplayName": (0, Util_1.UserDisplayName)(req) },
@@ -57,7 +58,7 @@ function ProcessAddPage(req, res, next) {
             res.end(err);
         }
         ;
-        res.redirect('/home');
+        res.redirect('/mytournaments/' + uid);
     });
 }
 exports.ProcessAddPage = ProcessAddPage;
@@ -141,7 +142,7 @@ function ProcessEditPage(req, res, next) {
                 res.end(err);
             }
             ;
-            res.redirect('/home');
+            res.redirect('/mytournaments/' + tournament.Owner.Id);
         });
     });
 }
@@ -149,13 +150,14 @@ exports.ProcessEditPage = ProcessEditPage;
 ;
 function ProcessDeletePage(req, res, next) {
     let id = req.params.id;
+    let uid = req.params.uid;
     tournament_1.default.remove({ "_id": id }, function (err) {
         if (err) {
             console.error(err);
             res.end(err);
         }
         ;
-        res.redirect('/home');
+        res.redirect('/mytournaments/' + uid);
     });
 }
 exports.ProcessDeletePage = ProcessDeletePage;
@@ -240,7 +242,7 @@ function ProcessManagePage(req, res, next) {
                     res.end(err);
                 }
                 ;
-                res.redirect('/home');
+                res.redirect('/mytournaments/' + tournament.Owner.Id);
             });
         }
         else {
@@ -263,7 +265,7 @@ function ProcessManagePage(req, res, next) {
                     res.end(err);
                 }
                 ;
-                res.redirect('/home');
+                res.redirect('/mytournaments/' + tournament.Owner.Id);
             });
         }
         ;

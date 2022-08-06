@@ -19,7 +19,7 @@ router.get('/mytournaments/:id',AuthGuard, DisplayMyTournamentPage);
 router.get('/mytournaments', RedirectLandingPage);
 
 /* Display add page. */
-router.get('/add',AuthGuard, DisplayAddPage);
+router.get('/add/:uid',AuthGuard, DisplayAddPage);
 
 /* Process add page. */
 router.post('/add',AuthGuard, ProcessAddPage);

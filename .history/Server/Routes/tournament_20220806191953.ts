@@ -19,10 +19,10 @@ router.get('/mytournaments/:id',AuthGuard, DisplayMyTournamentPage);
 router.get('/mytournaments', RedirectLandingPage);
 
 /* Display add page. */
-router.get('/add',AuthGuard, DisplayAddPage);
+router.get('/add/:uid',AuthGuard, DisplayAddPage);
 
 /* Process add page. */
-router.post('/add',AuthGuard, ProcessAddPage);
+router.post('/add/:uid',AuthGuard, ProcessAddPage);
 
 /* Show current round page*/
 router.get('/view/:id', DisplayCurrentRound);

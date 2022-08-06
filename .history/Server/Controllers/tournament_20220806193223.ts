@@ -347,8 +347,8 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
             res.end(err);
         };
 
-        // edit successful -> redirect back to my tournament page
-        res.redirect('/mytournaments/' + tournament.Owner.Id);
+        // edit successful -> redirect back to home page
+        res.redirect('/home');
     });
         // if the tournament is not active
          } else {

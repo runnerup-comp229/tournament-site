@@ -45,7 +45,7 @@ export function RedirectLandingPage(req : express.Request, res : express.Respons
 // display add page
 export function DisplayAddPage(req : express.Request, res : express.Response, next : express.NextFunction) 
 {
-    res.render('index', {title: 'Add', page: 'edit', tournament: '', displayName: UserDisplayName(req),  userId : getUserId(req)});
+    res.render('index', {title: 'Add', page: 'edit', tournament: '', displayName: UserDisplayName(req), uid: getUserId(req)});
 }
 
 // process add page
@@ -347,8 +347,8 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
             res.end(err);
         };
 
-        // edit successful -> redirect back to my tournament page
-        res.redirect('/mytournaments/' + tournament.Owner.Id);
+        // edit successful -> redirect back to home page
+        res.redirect('/home');
     });
         // if the tournament is not active
          } else {
