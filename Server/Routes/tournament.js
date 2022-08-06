@@ -17,7 +17,7 @@ router.get('/view/:id', tournament_1.DisplayCurrentRound);
 router.get('/:id/firstround', tournament_1.DisplayFirstRound);
 router.get('/edit/:id', Util_1.AuthGuard, tournament_1.DisplayEditPage);
 router.post('/edit/:id', Util_1.AuthGuard, tournament_1.ProcessEditPage);
-router.get('/delete/:id', Util_1.AuthGuard, tournament_1.ProcessDeletePage);
+router.get('/delete/:uid/:id', Util_1.AuthGuard, tournament_1.ProcessDeletePage);
 router.get('/:id/semifinal', tournament_1.DisplaySemiFinalPage);
 router.get('/:id/runnerup', tournament_1.DisplayRunnerUpPage);
 router.get('/:id/final', tournament_1.DisplayFinalPage);

@@ -45,15 +45,12 @@ export function RedirectLandingPage(req : express.Request, res : express.Respons
 // display add page
 export function DisplayAddPage(req : express.Request, res : express.Response, next : express.NextFunction) 
 {
-    res.render('index', {title: 'Add', page: 'edit', tournament: '', displayName: UserDisplayName(req),  userId : getUserId(req)});
+    res.render('index', {title: 'Add', page: 'edit', tournament: '', displayName: UserDisplayName(req)});
 }
 
 // process add page
 export function ProcessAddPage(req : express.Request, res : express.Response, next : express.NextFunction) 
 {
-    // user id
-    let uid = req.params.uid;
-
     // instantiate a new tournament to Add
     let newTournament = new Tournament
     ({
@@ -79,8 +76,7 @@ export function ProcessAddPage(req : express.Request, res : express.Response, ne
             res.end(err);
         };
 
-        // add successful -> redirect back to my tournament page
-        res.redirect('/mytournaments/' + uid);
+        res.redirect('/home');
     });
 };
 
@@ -207,7 +203,6 @@ export function ProcessDeletePage(req : express.Request, res : express.Response,
 {
     // declaring and initializing id variable with id property of req object
     let id = req.params.id;
-    let uid = req.params.uid;
 
     // remove tournament by id
     Tournament.remove({"_id" : id}, function(err : CallbackError)
@@ -219,7 +214,7 @@ export function ProcessDeletePage(req : express.Request, res : express.Response,
         };
 
         //delete successful -> redirect back to my tournament page
-        res.redirect('/mytournaments/' + uid);
+        res.redirect('/mytournaments/' + tournament.Owner.Id);
     });
 };
 
@@ -347,8 +342,8 @@ export function ProcessManagePage(req : express.Request, res : express.Response,
             res.end(err);
         };
 
-        // edit successful -> redirect back to my tournament page
-        res.redirect('/mytournaments/' + tournament.Owner.Id);
+        // edit successful -> redirect back to home page
+        res.redirect('/home');
     });
         // if the tournament is not active
          } else {
