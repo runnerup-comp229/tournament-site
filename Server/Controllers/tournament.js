@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessFinalAdvance = exports.ProcessRunnerUpAdvance = exports.ProcessSemisAdvance = exports.ProcessFirstRoundAdvance = exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.RedirectLandingPage = exports.DisplayMyTournamentPage = exports.DisplayLandingPage = void 0;
+exports.DisplayEnrollPage = exports.ProcessFinalAdvance = exports.ProcessRunnerUpAdvance = exports.ProcessSemisAdvance = exports.ProcessFirstRoundAdvance = exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.RedirectLandingPage = exports.DisplayMyTournamentPage = exports.DisplayLandingPage = void 0;
 const tournament_1 = __importDefault(require("../Models/tournament"));
 const Util_1 = require("../Util");
 function DisplayLandingPage(req, res, next) {
@@ -520,5 +520,23 @@ function ProcessFinalAdvance(req, res, next) {
     });
 }
 exports.ProcessFinalAdvance = ProcessFinalAdvance;
+;
+function DisplayEnrollPage(req, res, next) {
+    let id = req.params.id;
+    tournament_1.default.findById(id, {}, {}, (err, tournamentToEnroll) => {
+        if (err) {
+            return console.error(err);
+        }
+        else {
+            res.render('index', {
+                title: 'Enroll',
+                page: 'enroll',
+                tournament: tournamentToEnroll, displayName: (0, Util_1.UserDisplayName)(req)
+            });
+        }
+        ;
+    });
+}
+exports.DisplayEnrollPage = DisplayEnrollPage;
 ;
 //# sourceMappingURL=tournament.js.map

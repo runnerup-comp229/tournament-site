@@ -15,6 +15,7 @@
                     <th scope="col">Owner</th>
                     <th scope="col">Status</th>
                     <th></th>
+                    <th></th>
                     
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                          <% } %>  
 
                          <td class="text-center"><a href="/view/<%= tournament[count]._id %>" class="btn btn-info btn-sm edit"><i class="fa-solid fa-eye"></i> View</a></td>
+                         <td class="text-center"><a href="/<%= tournament[count]._id %>/enroll" class="btn btn-primary btn-sm edit"><i class="fa-solid fa-eye"></i> Enroll</a></td>
                          
                     </tr>
                 <% } %>     

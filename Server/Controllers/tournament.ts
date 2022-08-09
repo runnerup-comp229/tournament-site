@@ -660,3 +660,24 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
 } else { res.redirect('/'+id+'/final')};
 })
     };
+
+    export function DisplayEnrollPage(req : express.Request, res : express.Response, next : express.NextFunction) 
+{
+    // declaring and initializing id variable with id property of req object
+    let id = req.params.id;
+
+    // fetch tournament by id
+    Tournament.findById(id, {}, {}, (err, tournamentToEnroll ) => {
+      if (err)
+      {
+        return console.error(err);
+      } 
+      else {
+      // show the edit page with the data
+      res.render('index', {
+        title: 'Enroll',
+        page: 'enroll',
+        tournament : tournamentToEnroll, displayName: UserDisplayName(req)
+      })};
+    });
+};
