@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DisplayEnrollPage = exports.ProcessFinalAdvance = exports.ProcessRunnerUpAdvance = exports.ProcessSemisAdvance = exports.ProcessFirstRoundAdvance = exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.RedirectLandingPage = exports.DisplayMyTournamentPage = exports.DisplayLandingPage = void 0;
+exports.ProcessEnrollPage = exports.DisplayEnrollPage = exports.ProcessFinalAdvance = exports.ProcessRunnerUpAdvance = exports.ProcessSemisAdvance = exports.ProcessFirstRoundAdvance = exports.DisplayWinnersPage = exports.ProcessManagePage = exports.DisplayManagePage = exports.DisplayFinalPage = exports.DisplayRunnerUpPage = exports.DisplaySemiFinalPage = exports.ProcessDeletePage = exports.ProcessEditPage = exports.DisplayEditPage = exports.DisplayFirstRound = exports.DisplayCurrentRound = exports.ProcessAddPage = exports.DisplayAddPage = exports.RedirectLandingPage = exports.DisplayMyTournamentPage = exports.DisplayLandingPage = void 0;
 const tournament_1 = __importDefault(require("../Models/tournament"));
 const Util_1 = require("../Util");
 function DisplayLandingPage(req, res, next) {
@@ -539,4 +539,41 @@ function DisplayEnrollPage(req, res, next) {
 }
 exports.DisplayEnrollPage = DisplayEnrollPage;
 ;
+function ProcessEnrollPage(req, res, next) {
+    let id = req.params.id;
+    tournament_1.default.findById(id, {}, {}, (err, tournament) => {
+        if (err) {
+            return console.error(err);
+        }
+        let updateTournament = new tournament_1.default({ "_id": id,
+            "Name": tournament.Name,
+            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+            "isActive": tournament.isActive,
+            "Participants": [((tournament.Participants[0] == '') ? req.body.name : tournament.Participants[0]),
+                ((tournament.Participants[1] == '') ? req.body.name : tournament.Participants[1]),
+                ((tournament.Participants[2] == '') ? req.body.name : tournament.Participants[2]),
+                ((tournament.Participants[3] == '') ? req.body.name : tournament.Participants[3]),
+                ((tournament.Participants[4] == '') ? req.body.name : tournament.Participants[4]),
+                ((tournament.Participants[5] == '') ? req.body.name : tournament.Participants[5]),
+                ((tournament.Participants[6] == '') ? req.body.name : tournament.Participants[6]),
+                ((tournament.Participants[7] == '') ? req.body.name : tournament.Participants[7])],
+            "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
+            "Final": [tournament.Final[0], tournament.Final[1]],
+            "RunnerUp": [tournament.RunnerUp[0], tournament.RunnerUp[1]],
+            "First": tournament.first,
+            "Second": tournament.second,
+            "Third": tournament.third,
+            "Fourth": tournament.fourth
+        });
+        tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+            if (err) {
+                console.error(err);
+                res.end(err);
+            }
+            ;
+            res.redirect('/mytournaments/' + tournament.Owner.Id);
+        });
+    });
+}
+exports.ProcessEnrollPage = ProcessEnrollPage;
 //# sourceMappingURL=tournament.js.map

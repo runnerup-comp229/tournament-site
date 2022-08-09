@@ -29,5 +29,6 @@ router.get('/:id/semifinal/:boutnum/:winner/:second', tournament_1.ProcessSemisA
 router.get('/:id/runnerup/:winner/:second', tournament_1.ProcessRunnerUpAdvance);
 router.get('/:id/final/:winner/:second', tournament_1.ProcessFinalAdvance);
 router.get('/:id/enroll', tournament_1.DisplayEnrollPage);
+router.post('/:id/enroll', tournament_1.ProcessEnrollPage);
 exports.default = router;
 //# sourceMappingURL=tournament.js.map
