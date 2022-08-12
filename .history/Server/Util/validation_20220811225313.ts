@@ -41,9 +41,12 @@ export const updateValidateCheck = [
   check('confirmPassword')
   .custom((value, { req  }) => {
     if (value != "") {
-      if (value.length < 5 ) {
-        throw new Error('Password must be 5 chars long');
+      if (value.length < 5) {
+        throw new Error('Password must be 5 chars long and must contain a number');
       };
+      check('confirmPassword')
+  .matches(/\d/)
+  .withMessage('Password must contain a number')
     }
     return true;
   })
@@ -57,7 +60,7 @@ export function validateRegister(req: express.Request,res: express.Response, nex
     {
         const err = errors.array();
         console.log(err);
-        return res.render('index', {title: 'Update', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req), err, user : '', userId : getUserId(req)  });
+        return res.render('index', {title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req), err, user : '', userId : getUserId(req)  });
     }
     next();
 }

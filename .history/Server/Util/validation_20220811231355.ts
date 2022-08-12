@@ -44,6 +44,12 @@ export const updateValidateCheck = [
       if (value.length < 5 ) {
         throw new Error('Password must be 5 chars long');
       };
+      let regexp = new RegExp(/\d/);
+      let test = regexp.test(value);
+      if (test) {
+        throw new Error('Password must contain a number');
+      };
+
     }
     return true;
   })

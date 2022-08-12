@@ -132,7 +132,7 @@ export function DisplayFirstRound(req : express.Request, res : express.Response,
         }
 
         // show the first round page with the data
-        res.render('index', {title: 'First-round', page: "tournament-firstround", tournament: tournamentToView, displayName: UserDisplayName(req)});
+        res.render('index', {title: 'First-round', page: "tournament-firstround", tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 }
 
@@ -154,7 +154,7 @@ export function DisplayEditPage(req : express.Request, res : express.Response, n
       res.render('index', {
         title: 'Edit',
         page: 'edit',
-        tournament : tournamentToEdit, displayName: UserDisplayName(req)
+        tournament : tournamentToEdit, displayName: UserDisplayName(req), userId : getUserId(req)
       })};
     });
 };
@@ -239,7 +239,7 @@ export function DisplaySemiFinalPage(req : express.Request, res : express.Respon
         }
 
         // show the semi final page with the data
-        res.render('index', {title: 'Semi-Final', page: 'semifinal', tournament: tournamentToView, displayName: UserDisplayName(req)});
+        res.render('index', {title: 'Semi-Final', page: 'semifinal', tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 };
 
@@ -259,7 +259,7 @@ export function DisplayRunnerUpPage(req : express.Request, res : express.Respons
         }
 
         // show the runner-up page with the data
-        res.render('index', {title: 'Runner-Up', page: 'runnerup', tournament: tournamentToView, displayName: UserDisplayName(req)});
+        res.render('index', {title: 'Runner-Up', page: 'runnerup', tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 };
 
@@ -280,7 +280,7 @@ export function DisplayFinalPage(req : express.Request, res : express.Response, 
         }
 
         // show the final page with the data
-        res.render('index', {title: 'Final', page: 'final', tournament: tournamentToView, displayName: UserDisplayName(req)});
+        res.render('index', {title: 'Final', page: 'final', tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 };
 
@@ -301,7 +301,7 @@ export function DisplayManagePage(req : express.Request, res : express.Response,
       res.render('index', {
         title: 'Manage',
         page: 'manage',
-        tournament : tournamentToEdit, displayName: UserDisplayName(req)
+        tournament : tournamentToEdit, displayName: UserDisplayName(req), userId : getUserId(req)
       })};
     });
 };
@@ -402,7 +402,7 @@ export function DisplayWinnersPage(req : express.Request, res : express.Response
       res.render('index', {
         title: 'Winners',
         page: 'winners',
-        tournament : tournamentToEdit, displayName: UserDisplayName(req)
+        tournament : tournamentToEdit, displayName: UserDisplayName(req), userId : getUserId(req)
       })};
     });
 };

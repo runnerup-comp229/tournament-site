@@ -1,11 +1,11 @@
-
+import { updateValidateCheck } from './../../.history/Server/Util/validation_20220811221520';
 import express from 'express';
 const router = express.Router();
 
 // import the controller module
 import { DisplayLoginPage,  DisplayRegisterPage, DisplayUpdatePage,  ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, ProcessUpdatePage } from "../Controllers/auth";
 import { AuthGuard } from '../Util';
-import { registerValidateCheck , validateRegister, updateValidateCheck, validateUpdate} from '../Util/validation';
+import { registerValidateCheck , validateRegister, validateUpdate} from '../Util/validation';
 
 /* Display home page. */
 router.get('/login', DisplayLoginPage);

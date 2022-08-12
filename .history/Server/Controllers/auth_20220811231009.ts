@@ -48,7 +48,8 @@ export function ProcessUpdatePage(req : express.Request, res : express.Response,
         if (req.body.password != "" && req.body.confirmPassword != ""){
         User.changePassword(req.body.password, req.body.confirmPassword, function(err : CallbackError) {
             if (err){
-                
+                req.flash('loginMessage', 'Old password is incorrect');
+             res.render('index',{title:'Update',page:'register', user: User, messages: req.flash('registerMessage') ,displayName: UserDisplayName(req),err: '', userId: getUserId(req)});
                 return console.error(err);
             }
         })};

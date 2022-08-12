@@ -5,6 +5,8 @@ import passportLocalMongoose from 'passport-local-mongoose';
 //  Created a Schema 
 const UserSchema = new Schema
 ({
+    FirstName : String,
+    LastName : String,
     DisplayName: String,
     username: String,
     EmailAddress: String,
@@ -29,7 +31,9 @@ declare global
     {
         username: String,
         EmailAddress: String,
-        DisplayName: String
+        DisplayName: String,
+        FirstName : String,
+        LastName : String,
     }
 }
 
