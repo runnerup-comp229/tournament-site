@@ -1,4 +1,3 @@
-<div class="container">
 <div class="row">
   <div class="offset-md-3 col-md-6 col-sm-12">
         <div class="login" id="contentArea">
@@ -12,10 +11,12 @@
           <!-- Message Area -->
           <% if(messages.length > 0) { %>
             <% if (user) { %>
-              <div id="messageArea" class="alert alert-success"><%= messages %></div>
+              <div id="messageArea" class="alert alert-success">
               <% } else { %>
-                <div id="messageArea" class="alert alert-danger"><%= messages %></div>
+                <div id="messageArea" class="alert alert-danger">
               <% }  %>
+              <%= messages %>
+            </div>
             <% } %>
 
             <% if(err != '') { %>
@@ -99,6 +100,10 @@
             </form>
            
         </div>
+        <p class="text-center text-muted small">
+          Already have an account? 
+          <a class="link" href="/login">Sign in</a>
+        </p>
   </div>
 </div>
 </div>
