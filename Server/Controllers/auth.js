@@ -22,7 +22,7 @@ function DisplayUpdatePage(req, res, next) {
             return console.error(err);
         }
         else {
-            res.render('index', { title: 'Update', page: 'register', user: userToUpdate, messages: req.flash('registerMessage'), displayName: (0, Util_1.UserDisplayName)(req), err: '', userId: (0, Util_1.getUserId)(req) });
+            res.render('index', { title: 'Update', page: 'register', user: userToUpdate, messages: req.flash('updateMessage'), displayName: (0, Util_1.UserDisplayName)(req), err: '', userId: (0, Util_1.getUserId)(req) });
         }
         ;
     });
@@ -52,7 +52,8 @@ function ProcessUpdatePage(req, res, next) {
                 return console.error(err);
             }
             ;
-            res.redirect('/');
+            req.flash('updateMessage', 'Update Successful!');
+            res.redirect('/update/' + id);
         });
     });
 }

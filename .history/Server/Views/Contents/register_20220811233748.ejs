@@ -11,10 +11,11 @@
           <!-- Message Area -->
           <% if(messages.length > 0) { %>
             <% if (user) { %>
-              <div id="messageArea" class="alert alert-success">
+              <div id="messageArea" class="alert alert-info">
               <% } else { %>
                 <div id="messageArea" class="alert alert-danger">
               <% }  %>
+            
               <%= messages %>
             </div>
             <% } %>
