@@ -44,6 +44,12 @@ export const updateValidateCheck = [
       if (value.length < 5 ) {
         throw new Error('Password must be 5 chars long');
       };
+      let regexp = new RegExp('^[1-9]\d{0,2}$');
+      let test = regexp.test(value);
+      if (test) {
+        throw new Error('Password must contain a number');
+      };
+
     }
     return true;
   })
@@ -57,7 +63,7 @@ export function validateRegister(req: express.Request,res: express.Response, nex
     {
         const err = errors.array();
         console.log(err);
-        return res.render('index', {title: 'Update', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req), err, user : '', userId : getUserId(req)  });
+        return res.render('index', {title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req), err, user : '', userId : getUserId(req)  });
     }
     next();
 }

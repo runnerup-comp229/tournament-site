@@ -41,15 +41,13 @@ export function ProcessUpdatePage(req : express.Request, res : express.Response,
     user.findById(id, function (err : CallbackError, User : any) {
 
         if (!user) {
-            
-             return console.error(err);
+            return console.error(err);
         }
 
         if (req.body.password != "" && req.body.confirmPassword != ""){
         User.changePassword(req.body.password, req.body.confirmPassword, function(err : CallbackError) {
             if (err){
-                
-                return console.error(err);
+                console.error(err);
             }
         })};
 

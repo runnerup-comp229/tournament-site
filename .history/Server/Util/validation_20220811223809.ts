@@ -38,15 +38,12 @@ export const updateValidateCheck = [
   .withMessage("Email cannot be blanked")
   .isEmail()
   .normalizeEmail(),
-  check('confirmPassword')
-  .custom((value, { req  }) => {
-    if (value != "") {
-      if (value.length < 5 ) {
-        throw new Error('Password must be 5 chars long');
-      };
-    }
-    return true;
-  })
+  check('confirmPassword', 'Password must be 5 chars long and must contain a number')
+  .optional()
+  .isLength({ min: 5 })
+  .withMessage('Password must be at least 5 chars long')
+  .matches(/\d/)
+  .withMessage('Password must contain a number')
 ]
 
 // validate schema
@@ -57,7 +54,7 @@ export function validateRegister(req: express.Request,res: express.Response, nex
     {
         const err = errors.array();
         console.log(err);
-        return res.render('index', {title: 'Update', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req), err, user : '', userId : getUserId(req)  });
+        return res.render('index', {title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req), err, user : '', userId : getUserId(req)  });
     }
     next();
 }
