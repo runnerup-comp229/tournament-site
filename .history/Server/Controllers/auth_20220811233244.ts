@@ -48,7 +48,10 @@ export function ProcessUpdatePage(req : express.Request, res : express.Response,
         
 
         if (req.body.password != "" && req.body.confirmPassword != ""){
-            
+            if (!User.validatePassword(req.body.password)){
+                req.flash('updateMessage', 'Incorrect Password');
+                return res.redirect('/update/'+id);
+            }
         User.changePassword(req.body.password, req.body.confirmPassword, function(err : CallbackError) {
             if (err){
                 
@@ -68,8 +71,7 @@ export function ProcessUpdatePage(req : express.Request, res : express.Response,
             if (err) {
                 return console.error(err);
             };
-            req.flash('updateMessage', 'Update Successful!');
-            res.redirect('/update/'+id);
+            res.redirect('/');
         });
     });
 
