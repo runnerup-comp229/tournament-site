@@ -12,9 +12,9 @@
              
             <% } %>
 
-            <% if (tournament.RunnerUp[0] == "" && tournament.RunnerUp[1] == "" ) { %>
+            <% if (tournament.RunnerUp[0] == "" || tournament.RunnerUp[1] == "" ) { %>
                 <p class="h4">
-                    Teams have not been assigned yet.
+                    Both teams have not been assigned yet.
                   </p>
                   <% } else { %>
 

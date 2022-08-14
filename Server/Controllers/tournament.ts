@@ -576,10 +576,11 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
                 };
             })
          // edit successful
-        
+            res.redirect('/'+id+'/semifinal');
             } else{req.flash('advancementMessageSemi', 'Next Round Completed.')}
-        }else{req.flash('advancementMessageSemi', 'Only Owner May Advance Teams')};
-        res.redirect('/'+id+'/semifinal');
+        }else{req.flash('advancementMessageSemi', 'Only Owner May Advance Teams')
+                res.redirect('/'+id+'/semifinal');};
+        
 })
 };
 
@@ -622,9 +623,9 @@ export function ProcessRunnerUpAdvance(req : express.Request, res : express.Resp
                 };
             })
             // edit successful
-        
-}else{req.flash('advancementMessageRunner', 'Only Owner May Advance Teams')};
-res.redirect('/'+id+'/runnerup');
+            res.redirect('/'+id+'/runnerup');
+}else{req.flash('advancementMessageRunner', 'Only Owner May Advance Teams')
+        res.redirect('/'+id+'/runnerup');};
 })
     }; 
 
@@ -667,8 +668,9 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
                 };
             })
             // edit successful
-        
-} else{req.flash('advancementMessageFinal', 'Only Owner May Advance Teams')};
-res.redirect('/'+id+'/final');
+            res.redirect('/'+id+'/final');
+} else{req.flash('advancementMessageFinal', 'Only Owner May Advance Teams')
+        res.redirect('/'+id+'/final');};
+
 })
     };
