@@ -4,20 +4,18 @@
          <h1 class="display-5">My Tournament List</h1>
          
          <% if(tournament == "") { %>
-            <P> You have zero tournament in your list. Please add a tournament.</P>
+            <P> You have zero tournaments in your list. Please add a tournament.</P>
             <% } %>  
       </div>
       <div class="row">
         <div class="col">
             <a href="/home" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-angle-left"></i> All Tournaments</a>
-            <a href="/add" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-circle-plus"></i> Add Tournament</a>
+            <a href="/add" id="addButton" class="btn btn-warning mb-1"><i class="fa-solid fa-circle-plus"></i> Add Tournament</a>
             <% if(tournament != "") { %> 
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table-bordered table-hover table w-75">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col" class="text-center">#</th>
                     <th scope="col">Tournament Name</th>
-                    <th scope="col">Owner</th>
                     <th scope="col">Status</th>
                     <th></th>
                     <th></th>
@@ -30,9 +28,7 @@
                 <% for(let count = 0; count < tournament.length; count++) { %> 
                     
                     <tr>
-                        <th scope="row" class="text-center"> <%= count +1 %></th>
                         <td><%= tournament[count].Name %> </td>
-                        <td ><%= tournament[count].Owner.DisplayName %> </td>
                         <% if(tournament[count].isActive){ %>
                             <td>Active</td>
                           <% } else{ %>  
