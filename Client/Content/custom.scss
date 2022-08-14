@@ -10,6 +10,10 @@ $table-border-width: .0rem;
 $table-border-color:transparent;
 $table-striped-bg-factor: 0;
 $table-color:$info;
+$navbar-light-color:$link-color;
+$navbar-light-active-color:$link-color;
+$navbar-light-toggler-border-color:$info;
+$navbar-light-hover-color:$link-hover-color;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 /* ------- customize primary buttons -------- */   
