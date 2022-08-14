@@ -5,6 +5,13 @@
            
             <a href="/<%= tournament._id %>/runnerup" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-chevron-left"></i> Runner up</a>
             <a href="/<%= tournament._id %>/winners" id="addButton" class="btn btn-info mb-1"><i class="fa-solid fa-trophy"></i> Winners</a>
+
+            <% if(messages.length > 0) { %>
+                
+                <div id="messageArea" class="alert alert-danger"><%= messages %></div>
+             
+        <% } %>
+
             <% if (tournament.Final[0] == "" && tournament.Final[1] == "" ) { %>
                 <p class="h4">
                     Teams have not been assigned yet.

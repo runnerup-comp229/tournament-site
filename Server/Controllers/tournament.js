@@ -95,7 +95,7 @@ function DisplayFirstRound(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'First-round', page: "tournament-firstround", tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
+        res.render('index', { title: 'First-round', page: "tournament-firstround", messages: req.flash('advancementMessage'), tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
     });
 }
 exports.DisplayFirstRound = DisplayFirstRound;
@@ -169,7 +169,7 @@ function DisplaySemiFinalPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Semi-Final', page: 'semifinal', tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
+        res.render('index', { title: 'Semi-Final', page: 'semifinal', messages: req.flash('advancementMessageSemi'), tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
     });
 }
 exports.DisplaySemiFinalPage = DisplaySemiFinalPage;
@@ -181,7 +181,7 @@ function DisplayRunnerUpPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Runner-Up', page: 'runnerup', tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
+        res.render('index', { title: 'Runner-Up', page: 'runnerup', messages: req.flash('advancementMessageRunner'), tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
     });
 }
 exports.DisplayRunnerUpPage = DisplayRunnerUpPage;
@@ -193,7 +193,7 @@ function DisplayFinalPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Final', page: 'final', tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
+        res.render('index', { title: 'Final', page: 'final', messages: req.flash('advancementMessageFinal'), tournament: tournamentToView, displayName: (0, Util_1.UserDisplayName)(req), userId: (0, Util_1.getUserId)(req) });
     });
 }
 exports.DisplayFinalPage = DisplayFinalPage;
@@ -303,64 +303,84 @@ function ProcessFirstRoundAdvance(req, res, next) {
         if (tournament.Owner.Id == (0, Util_1.getUserId)(req)) {
             switch (boutnum) {
                 case '1':
-                    updateTournament = new tournament_1.default({ "_id": id,
-                        "Name": tournament.Name,
-                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                        "isActive": false,
-                        "Participants": tournament.Participants,
-                        "SemiFinal": [winner, tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
-                        "Final": tournament.Final,
-                        "RunnerUp": tournament.RunnerUp,
-                        "First": tournament.First,
-                        "Second": tournament.Second,
-                        "Third": tournament.Third,
-                        "Fourth": tournament.Fourth
-                    });
+                    if (tournament.Final[0] == "") {
+                        updateTournament = new tournament_1.default({ "_id": id,
+                            "Name": tournament.Name,
+                            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                            "isActive": false,
+                            "Participants": tournament.Participants,
+                            "SemiFinal": [winner, tournament.SemiFinal[1], tournament.SemiFinal[2], tournament.SemiFinal[3]],
+                            "Final": tournament.Final,
+                            "RunnerUp": tournament.RunnerUp,
+                            "First": tournament.First,
+                            "Second": tournament.Second,
+                            "Third": tournament.Third,
+                            "Fourth": tournament.Fourth
+                        });
+                    }
+                    else {
+                        req.flash('advancementMessage', 'Next Round Completed.');
+                    }
                     break;
                 case '2':
-                    updateTournament = new tournament_1.default({ "_id": id,
-                        "Name": tournament.Name,
-                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                        "isActive": false,
-                        "Participants": tournament.Participants,
-                        "SemiFinal": [tournament.SemiFinal[0], winner, tournament.SemiFinal[2], tournament.SemiFinal[3]],
-                        "Final": tournament.Final,
-                        "RunnerUp": tournament.RunnerUp,
-                        "First": tournament.First,
-                        "Second": tournament.Second,
-                        "Third": tournament.Third,
-                        "Fourth": tournament.Fourth
-                    });
+                    if (tournament.Final[0] == "") {
+                        updateTournament = new tournament_1.default({ "_id": id,
+                            "Name": tournament.Name,
+                            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                            "isActive": false,
+                            "Participants": tournament.Participants,
+                            "SemiFinal": [tournament.SemiFinal[0], winner, tournament.SemiFinal[2], tournament.SemiFinal[3]],
+                            "Final": tournament.Final,
+                            "RunnerUp": tournament.RunnerUp,
+                            "First": tournament.First,
+                            "Second": tournament.Second,
+                            "Third": tournament.Third,
+                            "Fourth": tournament.Fourth
+                        });
+                    }
+                    else {
+                        req.flash('advancementMessage', 'Next Round Completed.');
+                    }
                     break;
                 case '3':
-                    updateTournament = new tournament_1.default({ "_id": id,
-                        "Name": tournament.Name,
-                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                        "isActive": false,
-                        "Participants": tournament.Participants,
-                        "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], winner, tournament.SemiFinal[3]],
-                        "Final": tournament.Final,
-                        "RunnerUp": tournament.RunnerUp,
-                        "First": tournament.First,
-                        "Second": tournament.Second,
-                        "Third": tournament.Third,
-                        "Fourth": tournament.Fourth
-                    });
+                    if (tournament.Final[1] == "") {
+                        updateTournament = new tournament_1.default({ "_id": id,
+                            "Name": tournament.Name,
+                            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                            "isActive": false,
+                            "Participants": tournament.Participants,
+                            "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], winner, tournament.SemiFinal[3]],
+                            "Final": tournament.Final,
+                            "RunnerUp": tournament.RunnerUp,
+                            "First": tournament.First,
+                            "Second": tournament.Second,
+                            "Third": tournament.Third,
+                            "Fourth": tournament.Fourth
+                        });
+                    }
+                    else {
+                        req.flash('advancementMessage', 'Next Round Completed.');
+                    }
                     break;
                 case '4':
-                    updateTournament = new tournament_1.default({ "_id": id,
-                        "Name": tournament.Name,
-                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                        "isActive": false,
-                        "Participants": tournament.Participants,
-                        "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], winner],
-                        "Final": tournament.Final,
-                        "RunnerUp": tournament.RunnerUp,
-                        "First": tournament.First,
-                        "Second": tournament.Second,
-                        "Third": tournament.Third,
-                        "Fourth": tournament.Fourth
-                    });
+                    if (tournament.Final[1] == "") {
+                        updateTournament = new tournament_1.default({ "_id": id,
+                            "Name": tournament.Name,
+                            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                            "isActive": false,
+                            "Participants": tournament.Participants,
+                            "SemiFinal": [tournament.SemiFinal[0], tournament.SemiFinal[1], tournament.SemiFinal[2], winner],
+                            "Final": tournament.Final,
+                            "RunnerUp": tournament.RunnerUp,
+                            "First": tournament.First,
+                            "Second": tournament.Second,
+                            "Third": tournament.Third,
+                            "Fourth": tournament.Fourth
+                        });
+                    }
+                    else {
+                        req.flash('advancementMessage', 'Next Round Completed.');
+                    }
                     break;
             }
             tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
@@ -373,6 +393,7 @@ function ProcessFirstRoundAdvance(req, res, next) {
             res.redirect('/' + id + '/firstround');
         }
         else {
+            req.flash('advancementMessage', 'Only Tournament Owner May Advance Teams');
             res.redirect('/' + id + '/firstround');
         }
         ;
@@ -391,52 +412,57 @@ function ProcessSemisAdvance(req, res, next) {
             return console.error(err);
         }
         if (tournament.Owner.Id == (0, Util_1.getUserId)(req)) {
-            switch (boutnum) {
-                case '1':
-                    updateTournament = new tournament_1.default({ "_id": id,
-                        "Name": tournament.Name,
-                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                        "isActive": false,
-                        "Participants": tournament.Participants,
-                        "SemiFinal": tournament.SemiFinal,
-                        "Final": [winner, tournament.Final[1]],
-                        "RunnerUp": [second, tournament.RunnerUp[1]],
-                        "First": tournament.First,
-                        "Second": tournament.Second,
-                        "Third": tournament.Third,
-                        "Fourth": tournament.Fourth
-                    });
-                    break;
-                case '2':
-                case '1':
-                    updateTournament = new tournament_1.default({ "_id": id,
-                        "Name": tournament.Name,
-                        "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
-                        "isActive": false,
-                        "Participants": tournament.Participants,
-                        "SemiFinal": tournament.SemiFinal,
-                        "Final": [tournament.Final[0], winner],
-                        "RunnerUp": [tournament.RunnerUp[0], second],
-                        "First": tournament.First,
-                        "Second": tournament.Second,
-                        "Third": tournament.Third,
-                        "Fourth": tournament.Fourth
-                    });
-                    break;
-            }
-            tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
-                if (err) {
-                    console.error(err);
-                    res.end(err);
+            if (tournament.Third == "" && tournament.First == "") {
+                switch (boutnum) {
+                    case '1':
+                        updateTournament = new tournament_1.default({ "_id": id,
+                            "Name": tournament.Name,
+                            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                            "isActive": false,
+                            "Participants": tournament.Participants,
+                            "SemiFinal": tournament.SemiFinal,
+                            "Final": [winner, tournament.Final[1]],
+                            "RunnerUp": [second, tournament.RunnerUp[1]],
+                            "First": tournament.First,
+                            "Second": tournament.Second,
+                            "Third": tournament.Third,
+                            "Fourth": tournament.Fourth
+                        });
+                        break;
+                    case '2':
+                    case '1':
+                        updateTournament = new tournament_1.default({ "_id": id,
+                            "Name": tournament.Name,
+                            "Owner": { "Id": tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName },
+                            "isActive": false,
+                            "Participants": tournament.Participants,
+                            "SemiFinal": tournament.SemiFinal,
+                            "Final": [tournament.Final[0], winner],
+                            "RunnerUp": [tournament.RunnerUp[0], second],
+                            "First": tournament.First,
+                            "Second": tournament.Second,
+                            "Third": tournament.Third,
+                            "Fourth": tournament.Fourth
+                        });
+                        break;
                 }
-                ;
-            });
-            res.redirect('/' + id + '/semifinal');
+                tournament_1.default.updateOne({ "_id": id }, updateTournament, function (err) {
+                    if (err) {
+                        console.error(err);
+                        res.end(err);
+                    }
+                    ;
+                });
+            }
+            else {
+                req.flash('advancementMessageSemi', 'Next Round Completed.');
+            }
         }
         else {
-            res.redirect('/' + id + '/semifinal');
+            req.flash('advancementMessageSemi', 'Only Owner May Advance Teams');
         }
         ;
+        res.redirect('/' + id + '/semifinal');
     });
 }
 exports.ProcessSemisAdvance = ProcessSemisAdvance;
@@ -471,12 +497,12 @@ function ProcessRunnerUpAdvance(req, res, next) {
                 }
                 ;
             });
-            res.redirect('/' + id + '/runnerup');
         }
         else {
-            res.redirect('/' + id + '/runnerup');
+            req.flash('advancementMessageRunner', 'Only Owner May Advance Teams');
         }
         ;
+        res.redirect('/' + id + '/runnerup');
     });
 }
 exports.ProcessRunnerUpAdvance = ProcessRunnerUpAdvance;
@@ -511,12 +537,12 @@ function ProcessFinalAdvance(req, res, next) {
                 }
                 ;
             });
-            res.redirect('/' + id + '/final');
         }
         else {
-            res.redirect('/' + id + '/final');
+            req.flash('advancementMessageFinal', 'Only Owner May Advance Teams');
         }
         ;
+        res.redirect('/' + id + '/final');
     });
 }
 exports.ProcessFinalAdvance = ProcessFinalAdvance;

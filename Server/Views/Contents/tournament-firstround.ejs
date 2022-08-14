@@ -2,8 +2,14 @@
     <h1><%=tournament.Name%> First-Round</h1>
     
       
-            <a href="/<%= tournament._id %>/semifinal" id="addButton" class="btn btn-primary mb-1">Semi-Final <i class="fa-solid fa-chevron-right"></i></a>
+            <a href="/<%= tournament._id %>/semifinal" class="btn btn-primary mb-1">Semi-Final <i class="fa-solid fa-chevron-right"></i></a>
             
+            <% if(messages.length > 0) { %>
+                
+                    <div id="messageArea" class="alert alert-danger"><%= messages %></div>
+                 
+            <% } %>
+    
 <div class="boutContainer">        
         <div class="bout bout1">
             <a href='/<%= tournament._id %>/firstround/1/<%= tournament.Participants[0] %>' class="btn btn-danger team teamT" role="button"> <h3>Team 1</h3> <br> <%= tournament.Participants[0] %></a>
