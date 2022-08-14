@@ -23,6 +23,7 @@ h1{
     gap:10px;
 
 }
+
 .input-group-addon:first-child
 {
     border-right: 0;
@@ -43,7 +44,6 @@ table{
     margin-left: auto;
     margin-right: auto;
 }
-
 td:first-child,
 th:first-child {
   border-radius: 10px 0 0 10px;
@@ -107,15 +107,15 @@ td{
 {
     width:90%;
     min-width: 300px;
+    max-width: 600px;
     margin-bottom: 30px;
     padding-bottom: 0;
+    position:relative;
 }
 .boutContainer{
-    display:grid;
+    display:flex;
+    flex-wrap:wrap;
     grid-template-columns: 50%, 50%;
-}
-.bout2, .bout4{
-    grid-column: 2;
 }
 .team
 {
@@ -126,14 +126,20 @@ td{
     max-width: 200px;
 }
 
-
-.bout2, .bout4{
-    justify-content: right;
+.bracket{
+    height:500px;
+    width:90%;
+    position:absolute;
+    bottom: 70px;
+    z-index:-1;
 }
 .winner{
     float: right;
     position: relative;
     bottom: 50%;
+}
+.teamT{
+    margin-bottom: 180px;
 }
 .single{
     display:grid;

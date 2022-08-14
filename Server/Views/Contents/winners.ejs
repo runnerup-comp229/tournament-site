@@ -9,30 +9,30 @@
             
     <div class="row">
         <div class="col">
-           <table class="table table-striped table-bordered table-hover " >
+           <table class="table table-striped table-bordered table-hover w-75"  >
             <thead class="table-dark">
                 <tr>
                     <th scope="col" >#</th>
                     <th >Team Name</th>
                 </tr>
             </thead>
-            <tbody id="contactList">
+            <tbody id="winnerList">
                     
                     <tr>
-                        <th scope="row" > First</th>
-                        <td><%= tournament.First%> </td>
+                        <th scope="row" class="align-middle"> <img src="/Assets/Images/Gold.png" class="medal">First</th>
+                        <td class="align-middle"><h4><%= tournament.First%></h4> </td>
                     </tr>
                     <tr>
-                        <th scope="row" > Second</th>
-                        <td><%= tournament.Second%> </td>
+                        <th scope="row" class="align-middle"> <img src="/Assets/Images/Silver.png" class="medal">Second</th>
+                        <td class="align-middle"><h4><%= tournament.Second%> </h4></td>
                     </tr>
                     <tr>
-                        <th scope="row" > Third</th>
-                        <td><%= tournament.Third%> </td>
+                        <th scope="row" class="align-middle"> <img src="/Assets/Images/Bronze.png" class="medal">Third</th>
+                        <td class="align-middle"><h4><%= tournament.Third%></h4> </td>
                     </tr>
                     <tr>
-                        <th scope="row" > Fourth</th>
-                        <td><%= tournament.Fourth%> </td>
+                        <th scope="row" class="align-middle"> Fourth</th>
+                        <td class="align-middle"><%= tournament.Fourth%> </td>
                     </tr>
                   
             </tbody>
