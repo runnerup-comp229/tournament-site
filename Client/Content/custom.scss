@@ -4,6 +4,11 @@ $danger: #ff3640;
 $warning: #36ff69;
 $link-color: #4258ff;
 $link-hover-color: #828ac7;
+$table-bg:$primary;
+$table-cell-padding-y: .5rem;
+$table-border-width: .0rem;
+$table-border-color:transparent;
+$table-striped-bg-factor: 0;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 /* ------- customize primary buttons -------- */   

@@ -1732,10 +1732,10 @@ progress {
   }
 }
 .table {
-  --bs-table-bg: transparent;
+  --bs-table-bg: #ffdd60;
   --bs-table-accent-bg: transparent;
   --bs-table-striped-color: #212529;
-  --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+  --bs-table-striped-bg: rgba(0, 0, 0, 0);
   --bs-table-active-color: #212529;
   --bs-table-active-bg: rgba(0, 0, 0, 0.1);
   --bs-table-hover-color: #212529;
@@ -1744,12 +1744,12 @@ progress {
   margin-bottom: 1rem;
   color: #212529;
   vertical-align: top;
-  border-color: #dee2e6;
+  border-color: transparent;
 }
 .table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
-  border-bottom-width: 1px;
+  border-bottom-width: 0rem;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 }
 .table > tbody {
@@ -1759,7 +1759,7 @@ progress {
   vertical-align: bottom;
 }
 .table > :not(:first-child) {
-  border-top: 2px solid currentColor;
+  border-top: 0rem solid currentColor;
 }
 
 .caption-top {
@@ -1771,10 +1771,10 @@ progress {
 }
 
 .table-bordered > :not(caption) > * {
-  border-width: 1px 0;
+  border-width: 0rem 0;
 }
 .table-bordered > :not(caption) > * > * {
-  border-width: 0 1px;
+  border-width: 0 0rem;
 }
 
 .table-borderless > :not(caption) > * > * {
@@ -1801,7 +1801,7 @@ progress {
 
 .table-primary {
   --bs-table-bg: #fff8df;
-  --bs-table-striped-bg: #f2ecd4;
+  --bs-table-striped-bg: #fff8df;
   --bs-table-striped-color: #000;
   --bs-table-active-bg: #e6dfc9;
   --bs-table-active-color: #000;
@@ -1813,7 +1813,7 @@ progress {
 
 .table-secondary {
   --bs-table-bg: #e2e3e5;
-  --bs-table-striped-bg: #d7d8da;
+  --bs-table-striped-bg: #e2e3e5;
   --bs-table-striped-color: #000;
   --bs-table-active-bg: #cbccce;
   --bs-table-active-color: #000;
@@ -1825,7 +1825,7 @@ progress {
 
 .table-success {
   --bs-table-bg: #d1e7dd;
-  --bs-table-striped-bg: #c7dbd2;
+  --bs-table-striped-bg: #d1e7dd;
   --bs-table-striped-color: #000;
   --bs-table-active-bg: #bcd0c7;
   --bs-table-active-color: #000;
@@ -1837,7 +1837,7 @@ progress {
 
 .table-info {
   --bs-table-bg: #d9deff;
-  --bs-table-striped-bg: #ced3f2;
+  --bs-table-striped-bg: #d9deff;
   --bs-table-striped-color: #000;
   --bs-table-active-bg: #c3c8e6;
   --bs-table-active-color: #000;
@@ -1849,7 +1849,7 @@ progress {
 
 .table-warning {
   --bs-table-bg: #d7ffe1;
-  --bs-table-striped-bg: #ccf2d6;
+  --bs-table-striped-bg: #d7ffe1;
   --bs-table-striped-color: #000;
   --bs-table-active-bg: #c2e6cb;
   --bs-table-active-color: #000;
@@ -1861,7 +1861,7 @@ progress {
 
 .table-danger {
   --bs-table-bg: #ffd7d9;
-  --bs-table-striped-bg: #f2ccce;
+  --bs-table-striped-bg: #ffd7d9;
   --bs-table-striped-color: #000;
   --bs-table-active-bg: #e6c2c3;
   --bs-table-active-color: #000;
@@ -1873,7 +1873,7 @@ progress {
 
 .table-light {
   --bs-table-bg: #f8f9fa;
-  --bs-table-striped-bg: #ecedee;
+  --bs-table-striped-bg: #f8f9fa;
   --bs-table-striped-color: #000;
   --bs-table-active-bg: #dfe0e1;
   --bs-table-active-color: #000;
@@ -1885,7 +1885,7 @@ progress {
 
 .table-dark {
   --bs-table-bg: #212529;
-  --bs-table-striped-bg: #2c3034;
+  --bs-table-striped-bg: #212529;
   --bs-table-striped-color: #fff;
   --bs-table-active-bg: #373b3e;
   --bs-table-active-color: #fff;
