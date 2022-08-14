@@ -40,8 +40,8 @@
                          <% } %>  
 
                          <td class="text-center"><a href="/view/<%= tournament[count]._id %>" class="btn btn-info btn-sm edit"><i class="fa-solid fa-eye"></i> View</a></td>
-                         <td class="text-center"><a href="/manage/<%= tournament[count]._id %> " class="btn btn-primary btn-sm edit"><i class="fa-solid fa-list-check"></i> Manage</a></td>
-                         <td class="text-center"><a href="/edit/<%= tournament[count]._id %> " class="btn btn-primary btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
+                         <td class="text-center"><a href="/manage/<%= tournament[count]._id %> " class="btn btn-warning btn-sm edit"><i class="fa-solid fa-list-check"></i> Manage</a></td>
+                         <td class="text-center"><a href="/edit/<%= tournament[count]._id %> " class="btn btn-warning btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
                          <td class="text-center"><a href="/delete/<%= tournament[count].Owner.Id %>/<%= tournament[count]._id %> " class="btn btn-danger btn-sm delete"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                     </tr>
                 <% } %>     

@@ -4,17 +4,25 @@
     
            
             <a href="/<%= tournament._id %>/runnerup" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-chevron-left"></i> Runner up</a>
-            <a href="/<%= tournament._id %>/winners" id="addButton" class="btn btn-primary mb-1"><i class="fa-solid fa-trophy"></i> Winners</a>
+            <a href="/<%= tournament._id %>/winners" id="addButton" class="btn btn-info mb-1"><i class="fa-solid fa-trophy"></i> Winners</a>
+
+            <% if(messages.length > 0) { %>
+                
+                <div id="messageArea" class="alert alert-danger"><%= messages %></div>
+             
+        <% } %>
+
             <% if (tournament.Final[0] == "" && tournament.Final[1] == "" ) { %>
                 <p class="h4">
                     Teams have not been assigned yet.
                   </p>
                   <% } else { %>
-        <div class="bout single">
+        <div class="single">
             <a href='/<%= tournament._id %>/Final/<%= tournament.Final[0] %>/<%= tournament.Final[1] %>' class="btn btn-danger team teamT" role="button"> <h3>Team 1</h3> <br> <%= tournament.Final[0] %></a>
             <br>
             <a href="/<%= tournament._id %>/Final/<%= tournament.Final[1] %>/<%= tournament.Final[0] %>" class="btn btn-danger team teamB"> <h3>Team 2</h3> <br> <%= tournament.Final[1] %></a>
             <br>
+            <img src="/Assets/Images/vs.png" class="versus">
             <a href="#" class="btn btn-success team winner"> <h3>Winner</h3> <br> <%= tournament.First %></a>
     </div>
     <% } %>   

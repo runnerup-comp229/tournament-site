@@ -37,6 +37,7 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.1.2",
+    "sass": "^1.54.4",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
@@ -57,6 +58,7 @@
     "@types/node": "^17.0.38",
     "@types/passport": "^1.0.8",
     "@types/passport-local": "^1.0.34",
+    "@types/sass": "^1.43.1",
     "@types/serve-favicon": "^2.5.3"
   }
 }

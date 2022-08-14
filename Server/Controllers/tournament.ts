@@ -132,7 +132,7 @@ export function DisplayFirstRound(req : express.Request, res : express.Response,
         }
 
         // show the first round page with the data
-        res.render('index', {title: 'First-round', page: "tournament-firstround", tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
+        res.render('index', {title: 'First-round', page: "tournament-firstround",messages: req.flash('advancementMessage'), tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 }
 
@@ -239,7 +239,7 @@ export function DisplaySemiFinalPage(req : express.Request, res : express.Respon
         }
 
         // show the semi final page with the data
-        res.render('index', {title: 'Semi-Final', page: 'semifinal', tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
+        res.render('index', {title: 'Semi-Final', page: 'semifinal', messages: req.flash('advancementMessageSemi'),tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 };
 
@@ -259,7 +259,7 @@ export function DisplayRunnerUpPage(req : express.Request, res : express.Respons
         }
 
         // show the runner-up page with the data
-        res.render('index', {title: 'Runner-Up', page: 'runnerup', tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
+        res.render('index', {title: 'Runner-Up', page: 'runnerup',messages: req.flash('advancementMessageRunner'), tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 };
 
@@ -280,7 +280,7 @@ export function DisplayFinalPage(req : express.Request, res : express.Response, 
         }
 
         // show the final page with the data
-        res.render('index', {title: 'Final', page: 'final', tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
+        res.render('index', {title: 'Final', page: 'final', messages: req.flash('advancementMessageFinal'),tournament: tournamentToView, displayName: UserDisplayName(req), userId : getUserId(req)});
     });
 };
 
@@ -424,7 +424,8 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
             // create new tournament object to update according to winner
          switch(boutnum){
             case '1':
-                updateTournament = new Tournament
+            if(tournament.Final[0]==""){    
+            updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
                     "Owner" : {"Id" : tournament.Owner.Id, "DisplayName": tournament.Owner.DisplayName},
@@ -437,9 +438,11 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                     "Second": tournament.Second,
                     "Third": tournament.Third,
                     "Fourth": tournament.Fourth
-                });
+                });}else{req.flash('advancementMessage', 'Next Round Completed.')}
+
                 break;
             case '2': 
+            if(tournament.Final[0]==""){ 
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
@@ -453,9 +456,10 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                     "Second": tournament.Second,
                     "Third": tournament.Third,
                     "Fourth": tournament.Fourth
-                });
+                });}else{req.flash('advancementMessage', 'Next Round Completed.')}
                 break;
             case '3':
+                if(tournament.Final[1]==""){
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
@@ -469,9 +473,10 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                     "Second": tournament.Second,
                     "Third": tournament.Third,
                     "Fourth": tournament.Fourth
-                });
+                });}else{req.flash('advancementMessage', 'Next Round Completed.')}
                 break;
             case '4':
+                if(tournament.Final[1]==""){
                 updateTournament = new Tournament
                 ({  "_id": id,
                     "Name" : tournament.Name,
@@ -485,7 +490,7 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
                     "Second": tournament.Second,
                     "Third": tournament.Third,
                     "Fourth": tournament.Fourth
-                });
+                });}else{req.flash('advancementMessage', 'Next Round Completed.')}
                 break;
             }
 
@@ -503,7 +508,9 @@ export function ProcessFirstRoundAdvance(req : express.Request, res : express.Re
         // edit successful
         res.redirect('/'+id+'/firstround');
          }
-         else { res.redirect('/'+id+'/firstround')};
+         else {
+            req.flash('advancementMessage', 'Only Tournament Owner May Advance Teams') 
+            res.redirect('/'+id+'/firstround')};
 
          
     });
@@ -524,6 +531,7 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
            return console.error(err);
          }
          if (tournament.Owner.Id == getUserId(req)){
+            if(tournament.Third == "" && tournament.First==""){
          switch (boutnum){
             case '1':
                 updateTournament = new Tournament
@@ -568,10 +576,12 @@ export function ProcessSemisAdvance(req : express.Request, res : express.Respons
                 };
             })
          // edit successful
+        
+            } else{req.flash('advancementMessageSemi', 'Next Round Completed.')}
+        }else{req.flash('advancementMessageSemi', 'Only Owner May Advance Teams')};
         res.redirect('/'+id+'/semifinal');
-} else { res.redirect('/'+id+'/semifinal')};
 })
-}; 
+};
 
     //RunnerUp Advancement
 export function ProcessRunnerUpAdvance(req : express.Request, res : express.Response, next : express.NextFunction) {
@@ -612,8 +622,9 @@ export function ProcessRunnerUpAdvance(req : express.Request, res : express.Resp
                 };
             })
             // edit successful
-        res.redirect('/'+id+'/runnerup');
-} else { res.redirect('/'+id+'/runnerup')};
+        
+}else{req.flash('advancementMessageRunner', 'Only Owner May Advance Teams')};
+res.redirect('/'+id+'/runnerup');
 })
     }; 
 
@@ -656,7 +667,8 @@ export function ProcessFinalAdvance(req : express.Request, res : express.Respons
                 };
             })
             // edit successful
-        res.redirect('/'+id+'/final');
-} else { res.redirect('/'+id+'/final')};
+        
+} else{req.flash('advancementMessageFinal', 'Only Owner May Advance Teams')};
+res.redirect('/'+id+'/final');
 })
     };
