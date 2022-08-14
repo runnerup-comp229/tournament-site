@@ -453,6 +453,7 @@ function ProcessSemisAdvance(req, res, next) {
                     }
                     ;
                 });
+                res.redirect('/' + id + '/semifinal');
             }
             else {
                 req.flash('advancementMessageSemi', 'Next Round Completed.');
@@ -460,9 +461,9 @@ function ProcessSemisAdvance(req, res, next) {
         }
         else {
             req.flash('advancementMessageSemi', 'Only Owner May Advance Teams');
+            res.redirect('/' + id + '/semifinal');
         }
         ;
-        res.redirect('/' + id + '/semifinal');
     });
 }
 exports.ProcessSemisAdvance = ProcessSemisAdvance;
@@ -497,12 +498,13 @@ function ProcessRunnerUpAdvance(req, res, next) {
                 }
                 ;
             });
+            res.redirect('/' + id + '/runnerup');
         }
         else {
             req.flash('advancementMessageRunner', 'Only Owner May Advance Teams');
+            res.redirect('/' + id + '/runnerup');
         }
         ;
-        res.redirect('/' + id + '/runnerup');
     });
 }
 exports.ProcessRunnerUpAdvance = ProcessRunnerUpAdvance;
@@ -537,12 +539,13 @@ function ProcessFinalAdvance(req, res, next) {
                 }
                 ;
             });
+            res.redirect('/' + id + '/final');
         }
         else {
             req.flash('advancementMessageFinal', 'Only Owner May Advance Teams');
+            res.redirect('/' + id + '/final');
         }
         ;
-        res.redirect('/' + id + '/final');
     });
 }
 exports.ProcessFinalAdvance = ProcessFinalAdvance;
