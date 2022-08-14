@@ -109,13 +109,18 @@ td{
     min-width: 300px;
     max-width: 600px;
     margin-bottom: 30px;
-    padding-bottom: 0;
+    padding-bottom: 0px;
     position:relative;
+    background-color: rgba(255,255,255,0.05);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
 }
 .boutContainer{
     display:flex;
     flex-wrap:wrap;
-    grid-template-columns: 50%, 50%;
+    justify-content: space-between;
+    
 }
 .team
 {
@@ -141,13 +146,27 @@ td{
 .teamT{
     margin-bottom: 180px;
 }
+
 .single{
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 500px;
+    width:75%;
     display:grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
 }
 .single .teamT{
     grid-row: 1;
     grid-column: 2;
+}
+.versus{
+    grid-row:1;
+    grid-column: 3;
+    display:block;
+    max-width: 80%;
+    margin-left:15px;
+    margin-right:auto;
+    margin-top: 40px;
 }
 .single .teamB{
     grid-row: 1;

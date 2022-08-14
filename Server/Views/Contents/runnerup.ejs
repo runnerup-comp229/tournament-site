@@ -10,11 +10,12 @@
                     Teams have not been assigned yet.
                   </p>
                   <% } else { %>
-    <div class="bout single">
+    <div class="single">
         <a href='/<%= tournament._id %>/RunnerUp/<%= tournament.RunnerUp[0] %>/<%= tournament.RunnerUp[1] %>' class="btn btn-danger team teamT" role="button"> <h3>Team 1</h3> <br> <%= tournament.RunnerUp[0] %></a>
         <br>
         <a href="/<%= tournament._id %>/RunnerUp/<%= tournament.RunnerUp[1] %>/<%= tournament.RunnerUp[0] %>" class="btn btn-danger team teamB"> <h3>Team 2</h3> <br> <%= tournament.RunnerUp[1] %></a>
         <br>
+        <img src="/Assets/Images/vs.png" class="versus">
         <a href="#" class="btn btn-warning team winner"> <h3>Winner</h3> <br> <%= tournament.Third %></a>
         <% } %> 
 </div>
