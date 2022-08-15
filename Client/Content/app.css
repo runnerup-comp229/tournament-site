@@ -127,7 +127,7 @@ td{
 {
     margin-top: 30px;
     height:100px;
-    line-height:70%;
+    line-height:100%;
     min-width: 120px;
     max-width: 200px;
 }
@@ -151,10 +151,11 @@ td{
 .single{
     margin-left: auto;
     margin-right: auto;
-    min-width: 500px;
-    width:75%;
+    min-width: 300px;
+    max-width: 700px;
+    width:90%;
     display:grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 10% 25% 35% 25% 10%;
 }
 .single .teamT{
     grid-row: 1;
@@ -165,7 +166,7 @@ td{
     grid-column: 3;
     display:block;
     max-width: 80%;
-    margin-left:15px;
+    margin-left:25px;
     margin-right:auto;
     margin-top: 40px;
 }
@@ -176,4 +177,7 @@ td{
 .single .winner{
     grid-column:3;
     grid-row:2;
+    margin-left:25px;
+    height: fit-content;
+    padding-bottom: 10px;
 }
