@@ -132,7 +132,11 @@ td{
     max-width: 200px;
 }
 
-
+@media screen and (max-width: 480px){
+    .single{
+        grid-template-columns: 0% 25% 40% 25% 0% !important;
+    }
+}
 
 .bracket{
     height:500px;
