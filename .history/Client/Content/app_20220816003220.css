@@ -132,9 +132,9 @@ td{
     max-width: 200px;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (min-width: 480px){
     .single{
-        grid-template-columns: 8% 20% 20% 20% 20% !important;
+        grid-template-columns: 15% 20% 20% 20% 20% !important;
     }
 }
 
